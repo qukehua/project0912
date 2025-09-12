@@ -1,0 +1,546 @@
+The system is: Linux - 3.13.0-24-generic - i686
+Compiling the C compiler identification source file "CMakeCCompilerId.c" succeeded.
+Compiler: /opt/fsl-qoriq/1.9/sysroots/i686-fslsdk-linux/usr/bin/powerpc-fsl-linux-gnuspe/powerpc-fsl-linux-gnuspe-gcc -m32;-mcpu=8548;-mabi=spe;-mspe;-mfloat-gprs=double;--sysroot=/opt/fsl-qoriq/1.9/sysroots/ppce500v2-fsl-linux-gnuspe
+Build flags: ;-O2;-pipe;-g;-feliminate-unused-debug-types
+Id flags:  
+
+The output was:
+0
+
+
+Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "a.out"
+
+The C compiler identification is GNU, found in "/media/sf_share/project0903/build/CMakeFiles/3.9.6/CompilerIdC/a.out"
+
+Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" succeeded.
+Compiler: /opt/fsl-qoriq/1.9/sysroots/i686-fslsdk-linux/usr/bin/powerpc-fsl-linux-gnuspe/powerpc-fsl-linux-gnuspe-g++ -m32;-mcpu=8548;-mabi=spe;-mspe;-mfloat-gprs=double;--sysroot=/opt/fsl-qoriq/1.9/sysroots/ppce500v2-fsl-linux-gnuspe
+Build flags: ;-O2;-pipe;-g;-feliminate-unused-debug-types
+Id flags:  
+
+The output was:
+0
+
+
+Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "a.out"
+
+The CXX compiler identification is GNU, found in "/media/sf_share/project0903/build/CMakeFiles/3.9.6/CompilerIdCXX/a.out"
+
+Determining if the C compiler works passed with the following output:
+Change Dir: /media/sf_share/project0903/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_f054a/fast"
+/usr/bin/make -f CMakeFiles/cmTC_f054a.dir/build.make CMakeFiles/cmTC_f054a.dir/build
+make[1]: Entering directory `/media/sf_share/project0903/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_f054a.dir/testCCompiler.c.o
+/opt/fsl-qoriq/1.9/sysroots/i686-fslsdk-linux/usr/bin/powerpc-fsl-linux-gnuspe/powerpc-fsl-linux-gnuspe-gcc   -m32 -mcpu=8548 -mabi=spe -mspe -mfloat-gprs=double --sysroot=/opt/fsl-qoriq/1.9/sysroots/ppce500v2-fsl-linux-gnuspe   -O2 -pipe -g -feliminate-unused-debug-types    -o CMakeFiles/cmTC_f054a.dir/testCCompiler.c.o   -c /media/sf_share/project0903/build/CMakeFiles/CMakeTmp/testCCompiler.c
+Linking C executable cmTC_f054a
+/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_f054a.dir/link.txt --verbose=1
+/opt/fsl-qoriq/1.9/sysroots/i686-fslsdk-linux/usr/bin/powerpc-fsl-linux-gnuspe/powerpc-fsl-linux-gnuspe-gcc   -m32 -mcpu=8548 -mabi=spe -mspe -mfloat-gprs=double --sysroot=/opt/fsl-qoriq/1.9/sysroots/ppce500v2-fsl-linux-gnuspe -O2 -pipe -g -feliminate-unused-debug-types     CMakeFiles/cmTC_f054a.dir/testCCompiler.c.o  -o cmTC_f054a 
+make[1]: Leaving directory `/media/sf_share/project0903/build/CMakeFiles/CMakeTmp'
+
+
+Detecting C compiler ABI info compiled with the following output:
+Change Dir: /media/sf_share/project0903/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_eadae/fast"
+/usr/bin/make -f CMakeFiles/cmTC_eadae.dir/build.make CMakeFiles/cmTC_eadae.dir/build
+make[1]: Entering directory `/media/sf_share/project0903/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_eadae.dir/CMakeCCompilerABI.c.o
+/opt/fsl-qoriq/1.9/sysroots/i686-fslsdk-linux/usr/bin/powerpc-fsl-linux-gnuspe/powerpc-fsl-linux-gnuspe-gcc   -m32 -mcpu=8548 -mabi=spe -mspe -mfloat-gprs=double --sysroot=/opt/fsl-qoriq/1.9/sysroots/ppce500v2-fsl-linux-gnuspe   -O2 -pipe -g -feliminate-unused-debug-types    -o CMakeFiles/cmTC_eadae.dir/CMakeCCompilerABI.c.o   -c /usr/local/share/cmake-3.9/Modules/CMakeCCompilerABI.c
+Linking C executable cmTC_eadae
+/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_eadae.dir/link.txt --verbose=1
+/opt/fsl-qoriq/1.9/sysroots/i686-fslsdk-linux/usr/bin/powerpc-fsl-linux-gnuspe/powerpc-fsl-linux-gnuspe-gcc   -m32 -mcpu=8548 -mabi=spe -mspe -mfloat-gprs=double --sysroot=/opt/fsl-qoriq/1.9/sysroots/ppce500v2-fsl-linux-gnuspe -O2 -pipe -g -feliminate-unused-debug-types    -v CMakeFiles/cmTC_eadae.dir/CMakeCCompilerABI.c.o  -o cmTC_eadae 
+Using built-in specs.
+COLLECT_GCC=/opt/fsl-qoriq/1.9/sysroots/i686-fslsdk-linux/usr/bin/powerpc-fsl-linux-gnuspe/powerpc-fsl-linux-gnuspe-gcc
+COLLECT_LTO_WRAPPER=/opt/fsl-qoriq/1.9/sysroots/i686-fslsdk-linux/usr/libexec/powerpc-fsl-linux/gcc/powerpc-fsl-linux/4.9.2/lto-wrapper
+Target: powerpc-fsl-linux
+Configured with: /local/workspace/ci/iso-make/master/p1022ds/build_p1022ds/tmp/work-shared/gcc-4.9.2-r0/gcc-4.9.2/configure --build=i686-linux --host=i686-fslsdk-linux --target=powerpc-fsl-linux --prefix=/opt/fsl-qoriq/1.9/sysroots/i686-fslsdk-linux/usr --exec_prefix=/opt/fsl-qoriq/1.9/sysroots/i686-fslsdk-linux/usr --bindir=/opt/fsl-qoriq/1.9/sysroots/i686-fslsdk-linux/usr/bin/powerpc-fsl-linux --sbindir=/opt/fsl-qoriq/1.9/sysroots/i686-fslsdk-linux/usr/bin/powerpc-fsl-linux --libexecdir=/opt/fsl-qoriq/1.9/sysroots/i686-fslsdk-linux/usr/libexec/powerpc-fsl-linux --datadir=/opt/fsl-qoriq/1.9/sysroots/i686-fslsdk-linux/usr/share --sysconfdir=/opt/fsl-qoriq/1.9/sysroots/i686-fslsdk-linux/etc --sharedstatedir=/opt/fsl-qoriq/1.9/sysroots/i686-fslsdk-linux/com --localstatedir=/opt/fsl-qoriq/1.9/sysroots/i686-fslsdk-linux/var --libdir=/opt/fsl-qoriq/1.9/sysroots/i686-fslsdk-linux/usr/lib/powerpc-fsl-linux --includedir=/opt/fsl-qoriq/1.9/sysroots/i686-fslsdk-linux/usr/include --oldincludedir=/opt/fsl-qoriq/1.9/sysroots/i686-fslsdk-linux/usr/include --infodir=/opt/fsl-qoriq/1.9/sysroots/i686-fslsdk-linux/usr/share/info --mandir=/opt/fsl-qoriq/1.9/sysroots/i686-fslsdk-linux/usr/share/man --disable-silent-rules --disable-dependency-tracking --with-libtool-sysroot=/local/workspace/ci/iso-make/master/p1022ds/build_p1022ds/tmp/sysroots/i686-nativesdk-fslsdk-linux --with-gnu-ld --enable-shared --enable-languages=c,c++ --enable-threads=posix --enable-multilib --enable-c99 --enable-long-long --enable-symvers=gnu --enable-libstdcxx-pch --program-prefix=powerpc-fsl-linux- --without-local-prefix --enable-lto --enable-libssp --disable-bootstrap --disable-libmudflap --with-system-zlib --with-linker-hash-style=gnu --enable-linker-build-id --with-ppl=no --enable-checking=release --enable-cheaders=c_global --with-gxx-include-dir=/not/exist/usr/include/c++/4.9.2 --with-build-time-tools=/local/workspace/ci/iso-make/master/p1022ds/build_p1022ds/tmp/sysroots/i686-linux/usr/powerpc-fsl-linux/bin --with-sysroot=/not/exist --with-build-sysroot=/local/workspace/ci/iso-make/master/p1022ds/build_p1022ds/tmp/sysroots/p1022ds --with-long-double-128 --enable-targets=powerpc64 --enable-poison-system-directories --with-mpfr=/local/workspace/ci/iso-make/master/p1022ds/build_p1022ds/tmp/sysroots/i686-nativesdk-fslsdk-linux --with-mpc=/local/workspace/ci/iso-make/master/p1022ds/build_p1022ds/tmp/sysroots/i686-nativesdk-fslsdk-linux --enable-nls --with-isl=/local/workspace/ci/iso-make/master/p1022ds/build_p1022ds/tmp/sysroots/i686-nativesdk-fslsdk-linux/opt/fsl-qoriq/1.9/sysroots/i686-fslsdk-linux/usr --with-cloog=/local/workspace/ci/iso-make/master/p1022ds/build_p1022ds/tmp/sysroots/i686-nativesdk-fslsdk-linux/opt/fsl-qoriq/1.9/sysroots/i686-fslsdk-linux/usr --enable-__cxa_atexit
+Thread model: posix
+gcc version 4.9.2 (GCC) 
+COMPILER_PATH=/opt/fsl-qoriq/1.9/sysroots/i686-fslsdk-linux/usr/libexec/powerpc-fsl-linux/gcc/powerpc-fsl-linux/4.9.2/:/opt/fsl-qoriq/1.9/sysroots/i686-fslsdk-linux/usr/libexec/powerpc-fsl-linux/gcc/powerpc-fsl-linux/4.9.2/:/opt/fsl-qoriq/1.9/sysroots/i686-fslsdk-linux/usr/libexec/powerpc-fsl-linux/gcc/powerpc-fsl-linux/:/opt/fsl-qoriq/1.9/sysroots/i686-fslsdk-linux/usr/lib/powerpc-fsl-linux/gcc/powerpc-fsl-linux/4.9.2/:/opt/fsl-qoriq/1.9/sysroots/i686-fslsdk-linux/usr/lib/powerpc-fsl-linux/gcc/powerpc-fsl-linux/
+LIBRARY_PATH=/opt/fsl-qoriq/1.9/sysroots/i686-fslsdk-linux/usr/lib/powerpc-fsl-linux/gcc/powerpc-fsl-linux/4.9.2/:/opt/fsl-qoriq/1.9/sysroots/ppce500v2-fsl-linux-gnuspe/lib/../lib/:/opt/fsl-qoriq/1.9/sysroots/ppce500v2-fsl-linux-gnuspe/usr/lib/powerpc-fsl-linux/4.9.2/:/opt/fsl-qoriq/1.9/sysroots/ppce500v2-fsl-linux-gnuspe/usr/lib/../lib/:/opt/fsl-qoriq/1.9/sysroots/ppce500v2-fsl-linux-gnuspe/lib/:/opt/fsl-qoriq/1.9/sysroots/ppce500v2-fsl-linux-gnuspe/usr/lib/
+COLLECT_GCC_OPTIONS='-m32' '-mcpu=8548' '-mabi=spe' '-mspe' '-mfloat-gprs=double' '-O2' '-pipe' '-g' '-feliminate-unused-debug-types' '-v' '-o' 'cmTC_eadae'
+ /opt/fsl-qoriq/1.9/sysroots/i686-fslsdk-linux/usr/libexec/powerpc-fsl-linux/gcc/powerpc-fsl-linux/4.9.2/collect2 -plugin /opt/fsl-qoriq/1.9/sysroots/i686-fslsdk-linux/usr/libexec/powerpc-fsl-linux/gcc/powerpc-fsl-linux/4.9.2/liblto_plugin.so -plugin-opt=/opt/fsl-qoriq/1.9/sysroots/i686-fslsdk-linux/usr/libexec/powerpc-fsl-linux/gcc/powerpc-fsl-linux/4.9.2/lto-wrapper -plugin-opt=-fresolution=/tmp/ccSNWNtf.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --sysroot=/opt/fsl-qoriq/1.9/sysroots/ppce500v2-fsl-linux-gnuspe --build-id --eh-frame-hdr --hash-style=gnu -V -m elf32ppclinux -dynamic-linker /lib/ld.so.1 -o cmTC_eadae /opt/fsl-qoriq/1.9/sysroots/ppce500v2-fsl-linux-gnuspe/usr/lib/../lib/crt1.o /opt/fsl-qoriq/1.9/sysroots/ppce500v2-fsl-linux-gnuspe/usr/lib/../lib/crti.o /opt/fsl-qoriq/1.9/sysroots/ppce500v2-fsl-linux-gnuspe/usr/lib/powerpc-fsl-linux/4.9.2/crtbegin.o -L/opt/fsl-qoriq/1.9/sysroots/i686-fslsdk-linux/usr/lib/powerpc-fsl-linux/gcc/powerpc-fsl-linux/4.9.2 -L/opt/fsl-qoriq/1.9/sysroots/ppce500v2-fsl-linux-gnuspe/lib/../lib -L/opt/fsl-qoriq/1.9/sysroots/ppce500v2-fsl-linux-gnuspe/usr/lib/powerpc-fsl-linux/4.9.2 -L/opt/fsl-qoriq/1.9/sysroots/ppce500v2-fsl-linux-gnuspe/usr/lib/../lib -L/opt/fsl-qoriq/1.9/sysroots/ppce500v2-fsl-linux-gnuspe/lib -L/opt/fsl-qoriq/1.9/sysroots/ppce500v2-fsl-linux-gnuspe/usr/lib CMakeFiles/cmTC_eadae.dir/CMakeCCompilerABI.c.o -lgcc --as-needed -lgcc_s --no-as-needed -lc -lgcc --as-needed -lgcc_s --no-as-needed /opt/fsl-qoriq/1.9/sysroots/ppce500v2-fsl-linux-gnuspe/usr/lib/powerpc-fsl-linux/4.9.2/crtend.o /opt/fsl-qoriq/1.9/sysroots/ppce500v2-fsl-linux-gnuspe/usr/lib/../lib/crtn.o
+GNU ld (GNU Binutils) 2.25
+  Supported emulations:
+   elf32ppclinux
+   elf32ppc
+   elf32ppcsim
+   elf64ppc
+make[1]: Leaving directory `/media/sf_share/project0903/build/CMakeFiles/CMakeTmp'
+
+
+Parsed C implicit link information from above output:
+  link line regex: [^( *|.*[/\])(ld|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\]+-)?ld|collect2)[^/\]*( |$)]
+  ignore line: [Change Dir: /media/sf_share/project0903/build/CMakeFiles/CMakeTmp]
+  ignore line: []
+  ignore line: [Run Build Command:"/usr/bin/make" "cmTC_eadae/fast"]
+  ignore line: [/usr/bin/make -f CMakeFiles/cmTC_eadae.dir/build.make CMakeFiles/cmTC_eadae.dir/build]
+  ignore line: [make[1]: Entering directory `/media/sf_share/project0903/build/CMakeFiles/CMakeTmp']
+  ignore line: [Building C object CMakeFiles/cmTC_eadae.dir/CMakeCCompilerABI.c.o]
+  ignore line: [/opt/fsl-qoriq/1.9/sysroots/i686-fslsdk-linux/usr/bin/powerpc-fsl-linux-gnuspe/powerpc-fsl-linux-gnuspe-gcc   -m32 -mcpu=8548 -mabi=spe -mspe -mfloat-gprs=double --sysroot=/opt/fsl-qoriq/1.9/sysroots/ppce500v2-fsl-linux-gnuspe   -O2 -pipe -g -feliminate-unused-debug-types    -o CMakeFiles/cmTC_eadae.dir/CMakeCCompilerABI.c.o   -c /usr/local/share/cmake-3.9/Modules/CMakeCCompilerABI.c]
+  ignore line: [Linking C executable cmTC_eadae]
+  ignore line: [/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_eadae.dir/link.txt --verbose=1]
+  ignore line: [/opt/fsl-qoriq/1.9/sysroots/i686-fslsdk-linux/usr/bin/powerpc-fsl-linux-gnuspe/powerpc-fsl-linux-gnuspe-gcc   -m32 -mcpu=8548 -mabi=spe -mspe -mfloat-gprs=double --sysroot=/opt/fsl-qoriq/1.9/sysroots/ppce500v2-fsl-linux-gnuspe -O2 -pipe -g -feliminate-unused-debug-types    -v CMakeFiles/cmTC_eadae.dir/CMakeCCompilerABI.c.o  -o cmTC_eadae ]
+  ignore line: [Using built-in specs.]
+  ignore line: [COLLECT_GCC=/opt/fsl-qoriq/1.9/sysroots/i686-fslsdk-linux/usr/bin/powerpc-fsl-linux-gnuspe/powerpc-fsl-linux-gnuspe-gcc]
+  ignore line: [COLLECT_LTO_WRAPPER=/opt/fsl-qoriq/1.9/sysroots/i686-fslsdk-linux/usr/libexec/powerpc-fsl-linux/gcc/powerpc-fsl-linux/4.9.2/lto-wrapper]
+  ignore line: [Target: powerpc-fsl-linux]
+  ignore line: [Configured with: /local/workspace/ci/iso-make/master/p1022ds/build_p1022ds/tmp/work-shared/gcc-4.9.2-r0/gcc-4.9.2/configure --build=i686-linux --host=i686-fslsdk-linux --target=powerpc-fsl-linux --prefix=/opt/fsl-qoriq/1.9/sysroots/i686-fslsdk-linux/usr --exec_prefix=/opt/fsl-qoriq/1.9/sysroots/i686-fslsdk-linux/usr --bindir=/opt/fsl-qoriq/1.9/sysroots/i686-fslsdk-linux/usr/bin/powerpc-fsl-linux --sbindir=/opt/fsl-qoriq/1.9/sysroots/i686-fslsdk-linux/usr/bin/powerpc-fsl-linux --libexecdir=/opt/fsl-qoriq/1.9/sysroots/i686-fslsdk-linux/usr/libexec/powerpc-fsl-linux --datadir=/opt/fsl-qoriq/1.9/sysroots/i686-fslsdk-linux/usr/share --sysconfdir=/opt/fsl-qoriq/1.9/sysroots/i686-fslsdk-linux/etc --sharedstatedir=/opt/fsl-qoriq/1.9/sysroots/i686-fslsdk-linux/com --localstatedir=/opt/fsl-qoriq/1.9/sysroots/i686-fslsdk-linux/var --libdir=/opt/fsl-qoriq/1.9/sysroots/i686-fslsdk-linux/usr/lib/powerpc-fsl-linux --includedir=/opt/fsl-qoriq/1.9/sysroots/i686-fslsdk-linux/usr/include --oldincludedir=/opt/fsl-qoriq/1.9/sysroots/i686-fslsdk-linux/usr/include --infodir=/opt/fsl-qoriq/1.9/sysroots/i686-fslsdk-linux/usr/share/info --mandir=/opt/fsl-qoriq/1.9/sysroots/i686-fslsdk-linux/usr/share/man --disable-silent-rules --disable-dependency-tracking --with-libtool-sysroot=/local/workspace/ci/iso-make/master/p1022ds/build_p1022ds/tmp/sysroots/i686-nativesdk-fslsdk-linux --with-gnu-ld --enable-shared --enable-languages=c,c++ --enable-threads=posix --enable-multilib --enable-c99 --enable-long-long --enable-symvers=gnu --enable-libstdcxx-pch --program-prefix=powerpc-fsl-linux- --without-local-prefix --enable-lto --enable-libssp --disable-bootstrap --disable-libmudflap --with-system-zlib --with-linker-hash-style=gnu --enable-linker-build-id --with-ppl=no --enable-checking=release --enable-cheaders=c_global --with-gxx-include-dir=/not/exist/usr/include/c++/4.9.2 --with-build-time-tools=/local/workspace/ci/iso-make/master/p1022ds/build_p1022ds/tmp/sysroots/i686-linux/usr/powerpc-fsl-linux/bin --with-sysroot=/not/exist --with-build-sysroot=/local/workspace/ci/iso-make/master/p1022ds/build_p1022ds/tmp/sysroots/p1022ds --with-long-double-128 --enable-targets=powerpc64 --enable-poison-system-directories --with-mpfr=/local/workspace/ci/iso-make/master/p1022ds/build_p1022ds/tmp/sysroots/i686-nativesdk-fslsdk-linux --with-mpc=/local/workspace/ci/iso-make/master/p1022ds/build_p1022ds/tmp/sysroots/i686-nativesdk-fslsdk-linux --enable-nls --with-isl=/local/workspace/ci/iso-make/master/p1022ds/build_p1022ds/tmp/sysroots/i686-nativesdk-fslsdk-linux/opt/fsl-qoriq/1.9/sysroots/i686-fslsdk-linux/usr --with-cloog=/local/workspace/ci/iso-make/master/p1022ds/build_p1022ds/tmp/sysroots/i686-nativesdk-fslsdk-linux/opt/fsl-qoriq/1.9/sysroots/i686-fslsdk-linux/usr --enable-__cxa_atexit]
+  ignore line: [Thread model: posix]
+  ignore line: [gcc version 4.9.2 (GCC) ]
+  ignore line: [COMPILER_PATH=/opt/fsl-qoriq/1.9/sysroots/i686-fslsdk-linux/usr/libexec/powerpc-fsl-linux/gcc/powerpc-fsl-linux/4.9.2/:/opt/fsl-qoriq/1.9/sysroots/i686-fslsdk-linux/usr/libexec/powerpc-fsl-linux/gcc/powerpc-fsl-linux/4.9.2/:/opt/fsl-qoriq/1.9/sysroots/i686-fslsdk-linux/usr/libexec/powerpc-fsl-linux/gcc/powerpc-fsl-linux/:/opt/fsl-qoriq/1.9/sysroots/i686-fslsdk-linux/usr/lib/powerpc-fsl-linux/gcc/powerpc-fsl-linux/4.9.2/:/opt/fsl-qoriq/1.9/sysroots/i686-fslsdk-linux/usr/lib/powerpc-fsl-linux/gcc/powerpc-fsl-linux/]
+  ignore line: [LIBRARY_PATH=/opt/fsl-qoriq/1.9/sysroots/i686-fslsdk-linux/usr/lib/powerpc-fsl-linux/gcc/powerpc-fsl-linux/4.9.2/:/opt/fsl-qoriq/1.9/sysroots/ppce500v2-fsl-linux-gnuspe/lib/../lib/:/opt/fsl-qoriq/1.9/sysroots/ppce500v2-fsl-linux-gnuspe/usr/lib/powerpc-fsl-linux/4.9.2/:/opt/fsl-qoriq/1.9/sysroots/ppce500v2-fsl-linux-gnuspe/usr/lib/../lib/:/opt/fsl-qoriq/1.9/sysroots/ppce500v2-fsl-linux-gnuspe/lib/:/opt/fsl-qoriq/1.9/sysroots/ppce500v2-fsl-linux-gnuspe/usr/lib/]
+  ignore line: [COLLECT_GCC_OPTIONS='-m32' '-mcpu=8548' '-mabi=spe' '-mspe' '-mfloat-gprs=double' '-O2' '-pipe' '-g' '-feliminate-unused-debug-types' '-v' '-o' 'cmTC_eadae']
+  link line: [ /opt/fsl-qoriq/1.9/sysroots/i686-fslsdk-linux/usr/libexec/powerpc-fsl-linux/gcc/powerpc-fsl-linux/4.9.2/collect2 -plugin /opt/fsl-qoriq/1.9/sysroots/i686-fslsdk-linux/usr/libexec/powerpc-fsl-linux/gcc/powerpc-fsl-linux/4.9.2/liblto_plugin.so -plugin-opt=/opt/fsl-qoriq/1.9/sysroots/i686-fslsdk-linux/usr/libexec/powerpc-fsl-linux/gcc/powerpc-fsl-linux/4.9.2/lto-wrapper -plugin-opt=-fresolution=/tmp/ccSNWNtf.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --sysroot=/opt/fsl-qoriq/1.9/sysroots/ppce500v2-fsl-linux-gnuspe --build-id --eh-frame-hdr --hash-style=gnu -V -m elf32ppclinux -dynamic-linker /lib/ld.so.1 -o cmTC_eadae /opt/fsl-qoriq/1.9/sysroots/ppce500v2-fsl-linux-gnuspe/usr/lib/../lib/crt1.o /opt/fsl-qoriq/1.9/sysroots/ppce500v2-fsl-linux-gnuspe/usr/lib/../lib/crti.o /opt/fsl-qoriq/1.9/sysroots/ppce500v2-fsl-linux-gnuspe/usr/lib/powerpc-fsl-linux/4.9.2/crtbegin.o -L/opt/fsl-qoriq/1.9/sysroots/i686-fslsdk-linux/usr/lib/powerpc-fsl-linux/gcc/powerpc-fsl-linux/4.9.2 -L/opt/fsl-qoriq/1.9/sysroots/ppce500v2-fsl-linux-gnuspe/lib/../lib -L/opt/fsl-qoriq/1.9/sysroots/ppce500v2-fsl-linux-gnuspe/usr/lib/powerpc-fsl-linux/4.9.2 -L/opt/fsl-qoriq/1.9/sysroots/ppce500v2-fsl-linux-gnuspe/usr/lib/../lib -L/opt/fsl-qoriq/1.9/sysroots/ppce500v2-fsl-linux-gnuspe/lib -L/opt/fsl-qoriq/1.9/sysroots/ppce500v2-fsl-linux-gnuspe/usr/lib CMakeFiles/cmTC_eadae.dir/CMakeCCompilerABI.c.o -lgcc --as-needed -lgcc_s --no-as-needed -lc -lgcc --as-needed -lgcc_s --no-as-needed /opt/fsl-qoriq/1.9/sysroots/ppce500v2-fsl-linux-gnuspe/usr/lib/powerpc-fsl-linux/4.9.2/crtend.o /opt/fsl-qoriq/1.9/sysroots/ppce500v2-fsl-linux-gnuspe/usr/lib/../lib/crtn.o]
+    arg [/opt/fsl-qoriq/1.9/sysroots/i686-fslsdk-linux/usr/libexec/powerpc-fsl-linux/gcc/powerpc-fsl-linux/4.9.2/collect2] ==> ignore
+    arg [-plugin] ==> ignore
+    arg [/opt/fsl-qoriq/1.9/sysroots/i686-fslsdk-linux/usr/libexec/powerpc-fsl-linux/gcc/powerpc-fsl-linux/4.9.2/liblto_plugin.so] ==> ignore
+    arg [-plugin-opt=/opt/fsl-qoriq/1.9/sysroots/i686-fslsdk-linux/usr/libexec/powerpc-fsl-linux/gcc/powerpc-fsl-linux/4.9.2/lto-wrapper] ==> ignore
+    arg [-plugin-opt=-fresolution=/tmp/ccSNWNtf.res] ==> ignore
+    arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
+    arg [-plugin-opt=-pass-through=-lgcc_s] ==> ignore
+    arg [-plugin-opt=-pass-through=-lc] ==> ignore
+    arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
+    arg [-plugin-opt=-pass-through=-lgcc_s] ==> ignore
+    arg [--sysroot=/opt/fsl-qoriq/1.9/sysroots/ppce500v2-fsl-linux-gnuspe] ==> ignore
+    arg [--build-id] ==> ignore
+    arg [--eh-frame-hdr] ==> ignore
+    arg [--hash-style=gnu] ==> ignore
+    arg [-V] ==> ignore
+    arg [-m] ==> ignore
+    arg [elf32ppclinux] ==> ignore
+    arg [-dynamic-linker] ==> ignore
+    arg [/lib/ld.so.1] ==> ignore
+    arg [-o] ==> ignore
+    arg [cmTC_eadae] ==> ignore
+    arg [/opt/fsl-qoriq/1.9/sysroots/ppce500v2-fsl-linux-gnuspe/usr/lib/../lib/crt1.o] ==> ignore
+    arg [/opt/fsl-qoriq/1.9/sysroots/ppce500v2-fsl-linux-gnuspe/usr/lib/../lib/crti.o] ==> ignore
+    arg [/opt/fsl-qoriq/1.9/sysroots/ppce500v2-fsl-linux-gnuspe/usr/lib/powerpc-fsl-linux/4.9.2/crtbegin.o] ==> ignore
+    arg [-L/opt/fsl-qoriq/1.9/sysroots/i686-fslsdk-linux/usr/lib/powerpc-fsl-linux/gcc/powerpc-fsl-linux/4.9.2] ==> dir [/opt/fsl-qoriq/1.9/sysroots/i686-fslsdk-linux/usr/lib/powerpc-fsl-linux/gcc/powerpc-fsl-linux/4.9.2]
+    arg [-L/opt/fsl-qoriq/1.9/sysroots/ppce500v2-fsl-linux-gnuspe/lib/../lib] ==> dir [/opt/fsl-qoriq/1.9/sysroots/ppce500v2-fsl-linux-gnuspe/lib/../lib]
+    arg [-L/opt/fsl-qoriq/1.9/sysroots/ppce500v2-fsl-linux-gnuspe/usr/lib/powerpc-fsl-linux/4.9.2] ==> dir [/opt/fsl-qoriq/1.9/sysroots/ppce500v2-fsl-linux-gnuspe/usr/lib/powerpc-fsl-linux/4.9.2]
+    arg [-L/opt/fsl-qoriq/1.9/sysroots/ppce500v2-fsl-linux-gnuspe/usr/lib/../lib] ==> dir [/opt/fsl-qoriq/1.9/sysroots/ppce500v2-fsl-linux-gnuspe/usr/lib/../lib]
+    arg [-L/opt/fsl-qoriq/1.9/sysroots/ppce500v2-fsl-linux-gnuspe/lib] ==> dir [/opt/fsl-qoriq/1.9/sysroots/ppce500v2-fsl-linux-gnuspe/lib]
+    arg [-L/opt/fsl-qoriq/1.9/sysroots/ppce500v2-fsl-linux-gnuspe/usr/lib] ==> dir [/opt/fsl-qoriq/1.9/sysroots/ppce500v2-fsl-linux-gnuspe/usr/lib]
+    arg [CMakeFiles/cmTC_eadae.dir/CMakeCCompilerABI.c.o] ==> ignore
+    arg [-lgcc] ==> lib [gcc]
+    arg [--as-needed] ==> ignore
+    arg [-lgcc_s] ==> lib [gcc_s]
+    arg [--no-as-needed] ==> ignore
+    arg [-lc] ==> lib [c]
+    arg [-lgcc] ==> lib [gcc]
+    arg [--as-needed] ==> ignore
+    arg [-lgcc_s] ==> lib [gcc_s]
+    arg [--no-as-needed] ==> ignore
+    arg [/opt/fsl-qoriq/1.9/sysroots/ppce500v2-fsl-linux-gnuspe/usr/lib/powerpc-fsl-linux/4.9.2/crtend.o] ==> ignore
+    arg [/opt/fsl-qoriq/1.9/sysroots/ppce500v2-fsl-linux-gnuspe/usr/lib/../lib/crtn.o] ==> ignore
+  collapse library dir [/opt/fsl-qoriq/1.9/sysroots/i686-fslsdk-linux/usr/lib/powerpc-fsl-linux/gcc/powerpc-fsl-linux/4.9.2] ==> [/opt/fsl-qoriq/1.9/sysroots/i686-fslsdk-linux/usr/lib/powerpc-fsl-linux/gcc/powerpc-fsl-linux/4.9.2]
+  collapse library dir [/opt/fsl-qoriq/1.9/sysroots/ppce500v2-fsl-linux-gnuspe/lib/../lib] ==> [/opt/fsl-qoriq/1.9/sysroots/ppce500v2-fsl-linux-gnuspe/lib]
+  collapse library dir [/opt/fsl-qoriq/1.9/sysroots/ppce500v2-fsl-linux-gnuspe/usr/lib/powerpc-fsl-linux/4.9.2] ==> [/opt/fsl-qoriq/1.9/sysroots/ppce500v2-fsl-linux-gnuspe/usr/lib/powerpc-fsl-linux/4.9.2]
+  collapse library dir [/opt/fsl-qoriq/1.9/sysroots/ppce500v2-fsl-linux-gnuspe/usr/lib/../lib] ==> [/opt/fsl-qoriq/1.9/sysroots/ppce500v2-fsl-linux-gnuspe/usr/lib]
+  collapse library dir [/opt/fsl-qoriq/1.9/sysroots/ppce500v2-fsl-linux-gnuspe/lib] ==> [/opt/fsl-qoriq/1.9/sysroots/ppce500v2-fsl-linux-gnuspe/lib]
+  collapse library dir [/opt/fsl-qoriq/1.9/sysroots/ppce500v2-fsl-linux-gnuspe/usr/lib] ==> [/opt/fsl-qoriq/1.9/sysroots/ppce500v2-fsl-linux-gnuspe/usr/lib]
+  implicit libs: [gcc;gcc_s;c;gcc;gcc_s]
+  implicit dirs: [/opt/fsl-qoriq/1.9/sysroots/i686-fslsdk-linux/usr/lib/powerpc-fsl-linux/gcc/powerpc-fsl-linux/4.9.2;/opt/fsl-qoriq/1.9/sysroots/ppce500v2-fsl-linux-gnuspe/lib;/opt/fsl-qoriq/1.9/sysroots/ppce500v2-fsl-linux-gnuspe/usr/lib/powerpc-fsl-linux/4.9.2;/opt/fsl-qoriq/1.9/sysroots/ppce500v2-fsl-linux-gnuspe/usr/lib]
+  implicit fwks: []
+
+
+
+
+Detecting C [-std=c11] compiler features compiled with the following output:
+Change Dir: /media/sf_share/project0903/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_3ee2e/fast"
+/usr/bin/make -f CMakeFiles/cmTC_3ee2e.dir/build.make CMakeFiles/cmTC_3ee2e.dir/build
+make[1]: Entering directory `/media/sf_share/project0903/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_3ee2e.dir/feature_tests.c.o
+/opt/fsl-qoriq/1.9/sysroots/i686-fslsdk-linux/usr/bin/powerpc-fsl-linux-gnuspe/powerpc-fsl-linux-gnuspe-gcc   -m32 -mcpu=8548 -mabi=spe -mspe -mfloat-gprs=double --sysroot=/opt/fsl-qoriq/1.9/sysroots/ppce500v2-fsl-linux-gnuspe   -O2 -pipe -g -feliminate-unused-debug-types    -std=c11 -o CMakeFiles/cmTC_3ee2e.dir/feature_tests.c.o   -c /media/sf_share/project0903/build/CMakeFiles/feature_tests.c
+Linking C executable cmTC_3ee2e
+/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_3ee2e.dir/link.txt --verbose=1
+/opt/fsl-qoriq/1.9/sysroots/i686-fslsdk-linux/usr/bin/powerpc-fsl-linux-gnuspe/powerpc-fsl-linux-gnuspe-gcc   -m32 -mcpu=8548 -mabi=spe -mspe -mfloat-gprs=double --sysroot=/opt/fsl-qoriq/1.9/sysroots/ppce500v2-fsl-linux-gnuspe -O2 -pipe -g -feliminate-unused-debug-types     CMakeFiles/cmTC_3ee2e.dir/feature_tests.c.o  -o cmTC_3ee2e 
+make[1]: Leaving directory `/media/sf_share/project0903/build/CMakeFiles/CMakeTmp'
+
+
+    Feature record: C_FEATURE:1c_function_prototypes
+    Feature record: C_FEATURE:1c_restrict
+    Feature record: C_FEATURE:1c_static_assert
+    Feature record: C_FEATURE:1c_variadic_macros
+
+
+Detecting C [-std=c99] compiler features compiled with the following output:
+Change Dir: /media/sf_share/project0903/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_212e0/fast"
+/usr/bin/make -f CMakeFiles/cmTC_212e0.dir/build.make CMakeFiles/cmTC_212e0.dir/build
+make[1]: Entering directory `/media/sf_share/project0903/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_212e0.dir/feature_tests.c.o
+/opt/fsl-qoriq/1.9/sysroots/i686-fslsdk-linux/usr/bin/powerpc-fsl-linux-gnuspe/powerpc-fsl-linux-gnuspe-gcc   -m32 -mcpu=8548 -mabi=spe -mspe -mfloat-gprs=double --sysroot=/opt/fsl-qoriq/1.9/sysroots/ppce500v2-fsl-linux-gnuspe   -O2 -pipe -g -feliminate-unused-debug-types    -std=c99 -o CMakeFiles/cmTC_212e0.dir/feature_tests.c.o   -c /media/sf_share/project0903/build/CMakeFiles/feature_tests.c
+Linking C executable cmTC_212e0
+/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_212e0.dir/link.txt --verbose=1
+/opt/fsl-qoriq/1.9/sysroots/i686-fslsdk-linux/usr/bin/powerpc-fsl-linux-gnuspe/powerpc-fsl-linux-gnuspe-gcc   -m32 -mcpu=8548 -mabi=spe -mspe -mfloat-gprs=double --sysroot=/opt/fsl-qoriq/1.9/sysroots/ppce500v2-fsl-linux-gnuspe -O2 -pipe -g -feliminate-unused-debug-types     CMakeFiles/cmTC_212e0.dir/feature_tests.c.o  -o cmTC_212e0 
+make[1]: Leaving directory `/media/sf_share/project0903/build/CMakeFiles/CMakeTmp'
+
+
+    Feature record: C_FEATURE:1c_function_prototypes
+    Feature record: C_FEATURE:1c_restrict
+    Feature record: C_FEATURE:0c_static_assert
+    Feature record: C_FEATURE:1c_variadic_macros
+
+
+Detecting C [-std=c90] compiler features compiled with the following output:
+Change Dir: /media/sf_share/project0903/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_c1a67/fast"
+/usr/bin/make -f CMakeFiles/cmTC_c1a67.dir/build.make CMakeFiles/cmTC_c1a67.dir/build
+make[1]: Entering directory `/media/sf_share/project0903/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_c1a67.dir/feature_tests.c.o
+/opt/fsl-qoriq/1.9/sysroots/i686-fslsdk-linux/usr/bin/powerpc-fsl-linux-gnuspe/powerpc-fsl-linux-gnuspe-gcc   -m32 -mcpu=8548 -mabi=spe -mspe -mfloat-gprs=double --sysroot=/opt/fsl-qoriq/1.9/sysroots/ppce500v2-fsl-linux-gnuspe   -O2 -pipe -g -feliminate-unused-debug-types    -std=c90 -o CMakeFiles/cmTC_c1a67.dir/feature_tests.c.o   -c /media/sf_share/project0903/build/CMakeFiles/feature_tests.c
+Linking C executable cmTC_c1a67
+/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_c1a67.dir/link.txt --verbose=1
+/opt/fsl-qoriq/1.9/sysroots/i686-fslsdk-linux/usr/bin/powerpc-fsl-linux-gnuspe/powerpc-fsl-linux-gnuspe-gcc   -m32 -mcpu=8548 -mabi=spe -mspe -mfloat-gprs=double --sysroot=/opt/fsl-qoriq/1.9/sysroots/ppce500v2-fsl-linux-gnuspe -O2 -pipe -g -feliminate-unused-debug-types     CMakeFiles/cmTC_c1a67.dir/feature_tests.c.o  -o cmTC_c1a67 
+make[1]: Leaving directory `/media/sf_share/project0903/build/CMakeFiles/CMakeTmp'
+
+
+    Feature record: C_FEATURE:1c_function_prototypes
+    Feature record: C_FEATURE:0c_restrict
+    Feature record: C_FEATURE:0c_static_assert
+    Feature record: C_FEATURE:0c_variadic_macros
+Determining if the CXX compiler works passed with the following output:
+Change Dir: /media/sf_share/project0903/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_18aca/fast"
+/usr/bin/make -f CMakeFiles/cmTC_18aca.dir/build.make CMakeFiles/cmTC_18aca.dir/build
+make[1]: Entering directory `/media/sf_share/project0903/build/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_18aca.dir/testCXXCompiler.cxx.o
+/opt/fsl-qoriq/1.9/sysroots/i686-fslsdk-linux/usr/bin/powerpc-fsl-linux-gnuspe/powerpc-fsl-linux-gnuspe-g++   -m32 -mcpu=8548 -mabi=spe -mspe -mfloat-gprs=double --sysroot=/opt/fsl-qoriq/1.9/sysroots/ppce500v2-fsl-linux-gnuspe    -O2 -pipe -g -feliminate-unused-debug-types    -o CMakeFiles/cmTC_18aca.dir/testCXXCompiler.cxx.o -c /media/sf_share/project0903/build/CMakeFiles/CMakeTmp/testCXXCompiler.cxx
+Linking CXX executable cmTC_18aca
+/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_18aca.dir/link.txt --verbose=1
+/opt/fsl-qoriq/1.9/sysroots/i686-fslsdk-linux/usr/bin/powerpc-fsl-linux-gnuspe/powerpc-fsl-linux-gnuspe-g++   -m32 -mcpu=8548 -mabi=spe -mspe -mfloat-gprs=double --sysroot=/opt/fsl-qoriq/1.9/sysroots/ppce500v2-fsl-linux-gnuspe  -O2 -pipe -g -feliminate-unused-debug-types     CMakeFiles/cmTC_18aca.dir/testCXXCompiler.cxx.o  -o cmTC_18aca 
+make[1]: Leaving directory `/media/sf_share/project0903/build/CMakeFiles/CMakeTmp'
+
+
+Detecting CXX compiler ABI info compiled with the following output:
+Change Dir: /media/sf_share/project0903/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_114e9/fast"
+/usr/bin/make -f CMakeFiles/cmTC_114e9.dir/build.make CMakeFiles/cmTC_114e9.dir/build
+make[1]: Entering directory `/media/sf_share/project0903/build/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_114e9.dir/CMakeCXXCompilerABI.cpp.o
+/opt/fsl-qoriq/1.9/sysroots/i686-fslsdk-linux/usr/bin/powerpc-fsl-linux-gnuspe/powerpc-fsl-linux-gnuspe-g++   -m32 -mcpu=8548 -mabi=spe -mspe -mfloat-gprs=double --sysroot=/opt/fsl-qoriq/1.9/sysroots/ppce500v2-fsl-linux-gnuspe    -O2 -pipe -g -feliminate-unused-debug-types    -o CMakeFiles/cmTC_114e9.dir/CMakeCXXCompilerABI.cpp.o -c /usr/local/share/cmake-3.9/Modules/CMakeCXXCompilerABI.cpp
+Linking CXX executable cmTC_114e9
+/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_114e9.dir/link.txt --verbose=1
+/opt/fsl-qoriq/1.9/sysroots/i686-fslsdk-linux/usr/bin/powerpc-fsl-linux-gnuspe/powerpc-fsl-linux-gnuspe-g++   -m32 -mcpu=8548 -mabi=spe -mspe -mfloat-gprs=double --sysroot=/opt/fsl-qoriq/1.9/sysroots/ppce500v2-fsl-linux-gnuspe  -O2 -pipe -g -feliminate-unused-debug-types    -v CMakeFiles/cmTC_114e9.dir/CMakeCXXCompilerABI.cpp.o  -o cmTC_114e9 
+Using built-in specs.
+COLLECT_GCC=/opt/fsl-qoriq/1.9/sysroots/i686-fslsdk-linux/usr/bin/powerpc-fsl-linux-gnuspe/powerpc-fsl-linux-gnuspe-g++
+COLLECT_LTO_WRAPPER=/opt/fsl-qoriq/1.9/sysroots/i686-fslsdk-linux/usr/libexec/powerpc-fsl-linux/gcc/powerpc-fsl-linux/4.9.2/lto-wrapper
+Target: powerpc-fsl-linux
+Configured with: /local/workspace/ci/iso-make/master/p1022ds/build_p1022ds/tmp/work-shared/gcc-4.9.2-r0/gcc-4.9.2/configure --build=i686-linux --host=i686-fslsdk-linux --target=powerpc-fsl-linux --prefix=/opt/fsl-qoriq/1.9/sysroots/i686-fslsdk-linux/usr --exec_prefix=/opt/fsl-qoriq/1.9/sysroots/i686-fslsdk-linux/usr --bindir=/opt/fsl-qoriq/1.9/sysroots/i686-fslsdk-linux/usr/bin/powerpc-fsl-linux --sbindir=/opt/fsl-qoriq/1.9/sysroots/i686-fslsdk-linux/usr/bin/powerpc-fsl-linux --libexecdir=/opt/fsl-qoriq/1.9/sysroots/i686-fslsdk-linux/usr/libexec/powerpc-fsl-linux --datadir=/opt/fsl-qoriq/1.9/sysroots/i686-fslsdk-linux/usr/share --sysconfdir=/opt/fsl-qoriq/1.9/sysroots/i686-fslsdk-linux/etc --sharedstatedir=/opt/fsl-qoriq/1.9/sysroots/i686-fslsdk-linux/com --localstatedir=/opt/fsl-qoriq/1.9/sysroots/i686-fslsdk-linux/var --libdir=/opt/fsl-qoriq/1.9/sysroots/i686-fslsdk-linux/usr/lib/powerpc-fsl-linux --includedir=/opt/fsl-qoriq/1.9/sysroots/i686-fslsdk-linux/usr/include --oldincludedir=/opt/fsl-qoriq/1.9/sysroots/i686-fslsdk-linux/usr/include --infodir=/opt/fsl-qoriq/1.9/sysroots/i686-fslsdk-linux/usr/share/info --mandir=/opt/fsl-qoriq/1.9/sysroots/i686-fslsdk-linux/usr/share/man --disable-silent-rules --disable-dependency-tracking --with-libtool-sysroot=/local/workspace/ci/iso-make/master/p1022ds/build_p1022ds/tmp/sysroots/i686-nativesdk-fslsdk-linux --with-gnu-ld --enable-shared --enable-languages=c,c++ --enable-threads=posix --enable-multilib --enable-c99 --enable-long-long --enable-symvers=gnu --enable-libstdcxx-pch --program-prefix=powerpc-fsl-linux- --without-local-prefix --enable-lto --enable-libssp --disable-bootstrap --disable-libmudflap --with-system-zlib --with-linker-hash-style=gnu --enable-linker-build-id --with-ppl=no --enable-checking=release --enable-cheaders=c_global --with-gxx-include-dir=/not/exist/usr/include/c++/4.9.2 --with-build-time-tools=/local/workspace/ci/iso-make/master/p1022ds/build_p1022ds/tmp/sysroots/i686-linux/usr/powerpc-fsl-linux/bin --with-sysroot=/not/exist --with-build-sysroot=/local/workspace/ci/iso-make/master/p1022ds/build_p1022ds/tmp/sysroots/p1022ds --with-long-double-128 --enable-targets=powerpc64 --enable-poison-system-directories --with-mpfr=/local/workspace/ci/iso-make/master/p1022ds/build_p1022ds/tmp/sysroots/i686-nativesdk-fslsdk-linux --with-mpc=/local/workspace/ci/iso-make/master/p1022ds/build_p1022ds/tmp/sysroots/i686-nativesdk-fslsdk-linux --enable-nls --with-isl=/local/workspace/ci/iso-make/master/p1022ds/build_p1022ds/tmp/sysroots/i686-nativesdk-fslsdk-linux/opt/fsl-qoriq/1.9/sysroots/i686-fslsdk-linux/usr --with-cloog=/local/workspace/ci/iso-make/master/p1022ds/build_p1022ds/tmp/sysroots/i686-nativesdk-fslsdk-linux/opt/fsl-qoriq/1.9/sysroots/i686-fslsdk-linux/usr --enable-__cxa_atexit
+Thread model: posix
+gcc version 4.9.2 (GCC) 
+COMPILER_PATH=/opt/fsl-qoriq/1.9/sysroots/i686-fslsdk-linux/usr/libexec/powerpc-fsl-linux/gcc/powerpc-fsl-linux/4.9.2/:/opt/fsl-qoriq/1.9/sysroots/i686-fslsdk-linux/usr/libexec/powerpc-fsl-linux/gcc/powerpc-fsl-linux/4.9.2/:/opt/fsl-qoriq/1.9/sysroots/i686-fslsdk-linux/usr/libexec/powerpc-fsl-linux/gcc/powerpc-fsl-linux/:/opt/fsl-qoriq/1.9/sysroots/i686-fslsdk-linux/usr/lib/powerpc-fsl-linux/gcc/powerpc-fsl-linux/4.9.2/:/opt/fsl-qoriq/1.9/sysroots/i686-fslsdk-linux/usr/lib/powerpc-fsl-linux/gcc/powerpc-fsl-linux/
+LIBRARY_PATH=/opt/fsl-qoriq/1.9/sysroots/i686-fslsdk-linux/usr/lib/powerpc-fsl-linux/gcc/powerpc-fsl-linux/4.9.2/:/opt/fsl-qoriq/1.9/sysroots/ppce500v2-fsl-linux-gnuspe/lib/../lib/:/opt/fsl-qoriq/1.9/sysroots/ppce500v2-fsl-linux-gnuspe/usr/lib/powerpc-fsl-linux/4.9.2/:/opt/fsl-qoriq/1.9/sysroots/ppce500v2-fsl-linux-gnuspe/usr/lib/../lib/:/opt/fsl-qoriq/1.9/sysroots/ppce500v2-fsl-linux-gnuspe/lib/:/opt/fsl-qoriq/1.9/sysroots/ppce500v2-fsl-linux-gnuspe/usr/lib/
+COLLECT_GCC_OPTIONS='-m32' '-mcpu=8548' '-mabi=spe' '-mspe' '-mfloat-gprs=double' '-O2' '-pipe' '-g' '-feliminate-unused-debug-types' '-v' '-o' 'cmTC_114e9' '-shared-libgcc'
+ /opt/fsl-qoriq/1.9/sysroots/i686-fslsdk-linux/usr/libexec/powerpc-fsl-linux/gcc/powerpc-fsl-linux/4.9.2/collect2 -plugin /opt/fsl-qoriq/1.9/sysroots/i686-fslsdk-linux/usr/libexec/powerpc-fsl-linux/gcc/powerpc-fsl-linux/4.9.2/liblto_plugin.so -plugin-opt=/opt/fsl-qoriq/1.9/sysroots/i686-fslsdk-linux/usr/libexec/powerpc-fsl-linux/gcc/powerpc-fsl-linux/4.9.2/lto-wrapper -plugin-opt=-fresolution=/tmp/ccMhYQQ3.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --sysroot=/opt/fsl-qoriq/1.9/sysroots/ppce500v2-fsl-linux-gnuspe --build-id --eh-frame-hdr --hash-style=gnu -V -m elf32ppclinux -dynamic-linker /lib/ld.so.1 -o cmTC_114e9 /opt/fsl-qoriq/1.9/sysroots/ppce500v2-fsl-linux-gnuspe/usr/lib/../lib/crt1.o /opt/fsl-qoriq/1.9/sysroots/ppce500v2-fsl-linux-gnuspe/usr/lib/../lib/crti.o /opt/fsl-qoriq/1.9/sysroots/ppce500v2-fsl-linux-gnuspe/usr/lib/powerpc-fsl-linux/4.9.2/crtbegin.o -L/opt/fsl-qoriq/1.9/sysroots/i686-fslsdk-linux/usr/lib/powerpc-fsl-linux/gcc/powerpc-fsl-linux/4.9.2 -L/opt/fsl-qoriq/1.9/sysroots/ppce500v2-fsl-linux-gnuspe/lib/../lib -L/opt/fsl-qoriq/1.9/sysroots/ppce500v2-fsl-linux-gnuspe/usr/lib/powerpc-fsl-linux/4.9.2 -L/opt/fsl-qoriq/1.9/sysroots/ppce500v2-fsl-linux-gnuspe/usr/lib/../lib -L/opt/fsl-qoriq/1.9/sysroots/ppce500v2-fsl-linux-gnuspe/lib -L/opt/fsl-qoriq/1.9/sysroots/ppce500v2-fsl-linux-gnuspe/usr/lib CMakeFiles/cmTC_114e9.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /opt/fsl-qoriq/1.9/sysroots/ppce500v2-fsl-linux-gnuspe/usr/lib/powerpc-fsl-linux/4.9.2/crtend.o /opt/fsl-qoriq/1.9/sysroots/ppce500v2-fsl-linux-gnuspe/usr/lib/../lib/crtn.o
+GNU ld (GNU Binutils) 2.25
+  Supported emulations:
+   elf32ppclinux
+   elf32ppc
+   elf32ppcsim
+   elf64ppc
+make[1]: Leaving directory `/media/sf_share/project0903/build/CMakeFiles/CMakeTmp'
+
+
+Parsed CXX implicit link information from above output:
+  link line regex: [^( *|.*[/\])(ld|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\]+-)?ld|collect2)[^/\]*( |$)]
+  ignore line: [Change Dir: /media/sf_share/project0903/build/CMakeFiles/CMakeTmp]
+  ignore line: []
+  ignore line: [Run Build Command:"/usr/bin/make" "cmTC_114e9/fast"]
+  ignore line: [/usr/bin/make -f CMakeFiles/cmTC_114e9.dir/build.make CMakeFiles/cmTC_114e9.dir/build]
+  ignore line: [make[1]: Entering directory `/media/sf_share/project0903/build/CMakeFiles/CMakeTmp']
+  ignore line: [Building CXX object CMakeFiles/cmTC_114e9.dir/CMakeCXXCompilerABI.cpp.o]
+  ignore line: [/opt/fsl-qoriq/1.9/sysroots/i686-fslsdk-linux/usr/bin/powerpc-fsl-linux-gnuspe/powerpc-fsl-linux-gnuspe-g++   -m32 -mcpu=8548 -mabi=spe -mspe -mfloat-gprs=double --sysroot=/opt/fsl-qoriq/1.9/sysroots/ppce500v2-fsl-linux-gnuspe    -O2 -pipe -g -feliminate-unused-debug-types    -o CMakeFiles/cmTC_114e9.dir/CMakeCXXCompilerABI.cpp.o -c /usr/local/share/cmake-3.9/Modules/CMakeCXXCompilerABI.cpp]
+  ignore line: [Linking CXX executable cmTC_114e9]
+  ignore line: [/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_114e9.dir/link.txt --verbose=1]
+  ignore line: [/opt/fsl-qoriq/1.9/sysroots/i686-fslsdk-linux/usr/bin/powerpc-fsl-linux-gnuspe/powerpc-fsl-linux-gnuspe-g++   -m32 -mcpu=8548 -mabi=spe -mspe -mfloat-gprs=double --sysroot=/opt/fsl-qoriq/1.9/sysroots/ppce500v2-fsl-linux-gnuspe  -O2 -pipe -g -feliminate-unused-debug-types    -v CMakeFiles/cmTC_114e9.dir/CMakeCXXCompilerABI.cpp.o  -o cmTC_114e9 ]
+  ignore line: [Using built-in specs.]
+  ignore line: [COLLECT_GCC=/opt/fsl-qoriq/1.9/sysroots/i686-fslsdk-linux/usr/bin/powerpc-fsl-linux-gnuspe/powerpc-fsl-linux-gnuspe-g++]
+  ignore line: [COLLECT_LTO_WRAPPER=/opt/fsl-qoriq/1.9/sysroots/i686-fslsdk-linux/usr/libexec/powerpc-fsl-linux/gcc/powerpc-fsl-linux/4.9.2/lto-wrapper]
+  ignore line: [Target: powerpc-fsl-linux]
+  ignore line: [Configured with: /local/workspace/ci/iso-make/master/p1022ds/build_p1022ds/tmp/work-shared/gcc-4.9.2-r0/gcc-4.9.2/configure --build=i686-linux --host=i686-fslsdk-linux --target=powerpc-fsl-linux --prefix=/opt/fsl-qoriq/1.9/sysroots/i686-fslsdk-linux/usr --exec_prefix=/opt/fsl-qoriq/1.9/sysroots/i686-fslsdk-linux/usr --bindir=/opt/fsl-qoriq/1.9/sysroots/i686-fslsdk-linux/usr/bin/powerpc-fsl-linux --sbindir=/opt/fsl-qoriq/1.9/sysroots/i686-fslsdk-linux/usr/bin/powerpc-fsl-linux --libexecdir=/opt/fsl-qoriq/1.9/sysroots/i686-fslsdk-linux/usr/libexec/powerpc-fsl-linux --datadir=/opt/fsl-qoriq/1.9/sysroots/i686-fslsdk-linux/usr/share --sysconfdir=/opt/fsl-qoriq/1.9/sysroots/i686-fslsdk-linux/etc --sharedstatedir=/opt/fsl-qoriq/1.9/sysroots/i686-fslsdk-linux/com --localstatedir=/opt/fsl-qoriq/1.9/sysroots/i686-fslsdk-linux/var --libdir=/opt/fsl-qoriq/1.9/sysroots/i686-fslsdk-linux/usr/lib/powerpc-fsl-linux --includedir=/opt/fsl-qoriq/1.9/sysroots/i686-fslsdk-linux/usr/include --oldincludedir=/opt/fsl-qoriq/1.9/sysroots/i686-fslsdk-linux/usr/include --infodir=/opt/fsl-qoriq/1.9/sysroots/i686-fslsdk-linux/usr/share/info --mandir=/opt/fsl-qoriq/1.9/sysroots/i686-fslsdk-linux/usr/share/man --disable-silent-rules --disable-dependency-tracking --with-libtool-sysroot=/local/workspace/ci/iso-make/master/p1022ds/build_p1022ds/tmp/sysroots/i686-nativesdk-fslsdk-linux --with-gnu-ld --enable-shared --enable-languages=c,c++ --enable-threads=posix --enable-multilib --enable-c99 --enable-long-long --enable-symvers=gnu --enable-libstdcxx-pch --program-prefix=powerpc-fsl-linux- --without-local-prefix --enable-lto --enable-libssp --disable-bootstrap --disable-libmudflap --with-system-zlib --with-linker-hash-style=gnu --enable-linker-build-id --with-ppl=no --enable-checking=release --enable-cheaders=c_global --with-gxx-include-dir=/not/exist/usr/include/c++/4.9.2 --with-build-time-tools=/local/workspace/ci/iso-make/master/p1022ds/build_p1022ds/tmp/sysroots/i686-linux/usr/powerpc-fsl-linux/bin --with-sysroot=/not/exist --with-build-sysroot=/local/workspace/ci/iso-make/master/p1022ds/build_p1022ds/tmp/sysroots/p1022ds --with-long-double-128 --enable-targets=powerpc64 --enable-poison-system-directories --with-mpfr=/local/workspace/ci/iso-make/master/p1022ds/build_p1022ds/tmp/sysroots/i686-nativesdk-fslsdk-linux --with-mpc=/local/workspace/ci/iso-make/master/p1022ds/build_p1022ds/tmp/sysroots/i686-nativesdk-fslsdk-linux --enable-nls --with-isl=/local/workspace/ci/iso-make/master/p1022ds/build_p1022ds/tmp/sysroots/i686-nativesdk-fslsdk-linux/opt/fsl-qoriq/1.9/sysroots/i686-fslsdk-linux/usr --with-cloog=/local/workspace/ci/iso-make/master/p1022ds/build_p1022ds/tmp/sysroots/i686-nativesdk-fslsdk-linux/opt/fsl-qoriq/1.9/sysroots/i686-fslsdk-linux/usr --enable-__cxa_atexit]
+  ignore line: [Thread model: posix]
+  ignore line: [gcc version 4.9.2 (GCC) ]
+  ignore line: [COMPILER_PATH=/opt/fsl-qoriq/1.9/sysroots/i686-fslsdk-linux/usr/libexec/powerpc-fsl-linux/gcc/powerpc-fsl-linux/4.9.2/:/opt/fsl-qoriq/1.9/sysroots/i686-fslsdk-linux/usr/libexec/powerpc-fsl-linux/gcc/powerpc-fsl-linux/4.9.2/:/opt/fsl-qoriq/1.9/sysroots/i686-fslsdk-linux/usr/libexec/powerpc-fsl-linux/gcc/powerpc-fsl-linux/:/opt/fsl-qoriq/1.9/sysroots/i686-fslsdk-linux/usr/lib/powerpc-fsl-linux/gcc/powerpc-fsl-linux/4.9.2/:/opt/fsl-qoriq/1.9/sysroots/i686-fslsdk-linux/usr/lib/powerpc-fsl-linux/gcc/powerpc-fsl-linux/]
+  ignore line: [LIBRARY_PATH=/opt/fsl-qoriq/1.9/sysroots/i686-fslsdk-linux/usr/lib/powerpc-fsl-linux/gcc/powerpc-fsl-linux/4.9.2/:/opt/fsl-qoriq/1.9/sysroots/ppce500v2-fsl-linux-gnuspe/lib/../lib/:/opt/fsl-qoriq/1.9/sysroots/ppce500v2-fsl-linux-gnuspe/usr/lib/powerpc-fsl-linux/4.9.2/:/opt/fsl-qoriq/1.9/sysroots/ppce500v2-fsl-linux-gnuspe/usr/lib/../lib/:/opt/fsl-qoriq/1.9/sysroots/ppce500v2-fsl-linux-gnuspe/lib/:/opt/fsl-qoriq/1.9/sysroots/ppce500v2-fsl-linux-gnuspe/usr/lib/]
+  ignore line: [COLLECT_GCC_OPTIONS='-m32' '-mcpu=8548' '-mabi=spe' '-mspe' '-mfloat-gprs=double' '-O2' '-pipe' '-g' '-feliminate-unused-debug-types' '-v' '-o' 'cmTC_114e9' '-shared-libgcc']
+  link line: [ /opt/fsl-qoriq/1.9/sysroots/i686-fslsdk-linux/usr/libexec/powerpc-fsl-linux/gcc/powerpc-fsl-linux/4.9.2/collect2 -plugin /opt/fsl-qoriq/1.9/sysroots/i686-fslsdk-linux/usr/libexec/powerpc-fsl-linux/gcc/powerpc-fsl-linux/4.9.2/liblto_plugin.so -plugin-opt=/opt/fsl-qoriq/1.9/sysroots/i686-fslsdk-linux/usr/libexec/powerpc-fsl-linux/gcc/powerpc-fsl-linux/4.9.2/lto-wrapper -plugin-opt=-fresolution=/tmp/ccMhYQQ3.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --sysroot=/opt/fsl-qoriq/1.9/sysroots/ppce500v2-fsl-linux-gnuspe --build-id --eh-frame-hdr --hash-style=gnu -V -m elf32ppclinux -dynamic-linker /lib/ld.so.1 -o cmTC_114e9 /opt/fsl-qoriq/1.9/sysroots/ppce500v2-fsl-linux-gnuspe/usr/lib/../lib/crt1.o /opt/fsl-qoriq/1.9/sysroots/ppce500v2-fsl-linux-gnuspe/usr/lib/../lib/crti.o /opt/fsl-qoriq/1.9/sysroots/ppce500v2-fsl-linux-gnuspe/usr/lib/powerpc-fsl-linux/4.9.2/crtbegin.o -L/opt/fsl-qoriq/1.9/sysroots/i686-fslsdk-linux/usr/lib/powerpc-fsl-linux/gcc/powerpc-fsl-linux/4.9.2 -L/opt/fsl-qoriq/1.9/sysroots/ppce500v2-fsl-linux-gnuspe/lib/../lib -L/opt/fsl-qoriq/1.9/sysroots/ppce500v2-fsl-linux-gnuspe/usr/lib/powerpc-fsl-linux/4.9.2 -L/opt/fsl-qoriq/1.9/sysroots/ppce500v2-fsl-linux-gnuspe/usr/lib/../lib -L/opt/fsl-qoriq/1.9/sysroots/ppce500v2-fsl-linux-gnuspe/lib -L/opt/fsl-qoriq/1.9/sysroots/ppce500v2-fsl-linux-gnuspe/usr/lib CMakeFiles/cmTC_114e9.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /opt/fsl-qoriq/1.9/sysroots/ppce500v2-fsl-linux-gnuspe/usr/lib/powerpc-fsl-linux/4.9.2/crtend.o /opt/fsl-qoriq/1.9/sysroots/ppce500v2-fsl-linux-gnuspe/usr/lib/../lib/crtn.o]
+    arg [/opt/fsl-qoriq/1.9/sysroots/i686-fslsdk-linux/usr/libexec/powerpc-fsl-linux/gcc/powerpc-fsl-linux/4.9.2/collect2] ==> ignore
+    arg [-plugin] ==> ignore
+    arg [/opt/fsl-qoriq/1.9/sysroots/i686-fslsdk-linux/usr/libexec/powerpc-fsl-linux/gcc/powerpc-fsl-linux/4.9.2/liblto_plugin.so] ==> ignore
+    arg [-plugin-opt=/opt/fsl-qoriq/1.9/sysroots/i686-fslsdk-linux/usr/libexec/powerpc-fsl-linux/gcc/powerpc-fsl-linux/4.9.2/lto-wrapper] ==> ignore
+    arg [-plugin-opt=-fresolution=/tmp/ccMhYQQ3.res] ==> ignore
+    arg [-plugin-opt=-pass-through=-lgcc_s] ==> ignore
+    arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
+    arg [-plugin-opt=-pass-through=-lc] ==> ignore
+    arg [-plugin-opt=-pass-through=-lgcc_s] ==> ignore
+    arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
+    arg [--sysroot=/opt/fsl-qoriq/1.9/sysroots/ppce500v2-fsl-linux-gnuspe] ==> ignore
+    arg [--build-id] ==> ignore
+    arg [--eh-frame-hdr] ==> ignore
+    arg [--hash-style=gnu] ==> ignore
+    arg [-V] ==> ignore
+    arg [-m] ==> ignore
+    arg [elf32ppclinux] ==> ignore
+    arg [-dynamic-linker] ==> ignore
+    arg [/lib/ld.so.1] ==> ignore
+    arg [-o] ==> ignore
+    arg [cmTC_114e9] ==> ignore
+    arg [/opt/fsl-qoriq/1.9/sysroots/ppce500v2-fsl-linux-gnuspe/usr/lib/../lib/crt1.o] ==> ignore
+    arg [/opt/fsl-qoriq/1.9/sysroots/ppce500v2-fsl-linux-gnuspe/usr/lib/../lib/crti.o] ==> ignore
+    arg [/opt/fsl-qoriq/1.9/sysroots/ppce500v2-fsl-linux-gnuspe/usr/lib/powerpc-fsl-linux/4.9.2/crtbegin.o] ==> ignore
+    arg [-L/opt/fsl-qoriq/1.9/sysroots/i686-fslsdk-linux/usr/lib/powerpc-fsl-linux/gcc/powerpc-fsl-linux/4.9.2] ==> dir [/opt/fsl-qoriq/1.9/sysroots/i686-fslsdk-linux/usr/lib/powerpc-fsl-linux/gcc/powerpc-fsl-linux/4.9.2]
+    arg [-L/opt/fsl-qoriq/1.9/sysroots/ppce500v2-fsl-linux-gnuspe/lib/../lib] ==> dir [/opt/fsl-qoriq/1.9/sysroots/ppce500v2-fsl-linux-gnuspe/lib/../lib]
+    arg [-L/opt/fsl-qoriq/1.9/sysroots/ppce500v2-fsl-linux-gnuspe/usr/lib/powerpc-fsl-linux/4.9.2] ==> dir [/opt/fsl-qoriq/1.9/sysroots/ppce500v2-fsl-linux-gnuspe/usr/lib/powerpc-fsl-linux/4.9.2]
+    arg [-L/opt/fsl-qoriq/1.9/sysroots/ppce500v2-fsl-linux-gnuspe/usr/lib/../lib] ==> dir [/opt/fsl-qoriq/1.9/sysroots/ppce500v2-fsl-linux-gnuspe/usr/lib/../lib]
+    arg [-L/opt/fsl-qoriq/1.9/sysroots/ppce500v2-fsl-linux-gnuspe/lib] ==> dir [/opt/fsl-qoriq/1.9/sysroots/ppce500v2-fsl-linux-gnuspe/lib]
+    arg [-L/opt/fsl-qoriq/1.9/sysroots/ppce500v2-fsl-linux-gnuspe/usr/lib] ==> dir [/opt/fsl-qoriq/1.9/sysroots/ppce500v2-fsl-linux-gnuspe/usr/lib]
+    arg [CMakeFiles/cmTC_114e9.dir/CMakeCXXCompilerABI.cpp.o] ==> ignore
+    arg [-lstdc++] ==> lib [stdc++]
+    arg [-lm] ==> lib [m]
+    arg [-lgcc_s] ==> lib [gcc_s]
+    arg [-lgcc] ==> lib [gcc]
+    arg [-lc] ==> lib [c]
+    arg [-lgcc_s] ==> lib [gcc_s]
+    arg [-lgcc] ==> lib [gcc]
+    arg [/opt/fsl-qoriq/1.9/sysroots/ppce500v2-fsl-linux-gnuspe/usr/lib/powerpc-fsl-linux/4.9.2/crtend.o] ==> ignore
+    arg [/opt/fsl-qoriq/1.9/sysroots/ppce500v2-fsl-linux-gnuspe/usr/lib/../lib/crtn.o] ==> ignore
+  collapse library dir [/opt/fsl-qoriq/1.9/sysroots/i686-fslsdk-linux/usr/lib/powerpc-fsl-linux/gcc/powerpc-fsl-linux/4.9.2] ==> [/opt/fsl-qoriq/1.9/sysroots/i686-fslsdk-linux/usr/lib/powerpc-fsl-linux/gcc/powerpc-fsl-linux/4.9.2]
+  collapse library dir [/opt/fsl-qoriq/1.9/sysroots/ppce500v2-fsl-linux-gnuspe/lib/../lib] ==> [/opt/fsl-qoriq/1.9/sysroots/ppce500v2-fsl-linux-gnuspe/lib]
+  collapse library dir [/opt/fsl-qoriq/1.9/sysroots/ppce500v2-fsl-linux-gnuspe/usr/lib/powerpc-fsl-linux/4.9.2] ==> [/opt/fsl-qoriq/1.9/sysroots/ppce500v2-fsl-linux-gnuspe/usr/lib/powerpc-fsl-linux/4.9.2]
+  collapse library dir [/opt/fsl-qoriq/1.9/sysroots/ppce500v2-fsl-linux-gnuspe/usr/lib/../lib] ==> [/opt/fsl-qoriq/1.9/sysroots/ppce500v2-fsl-linux-gnuspe/usr/lib]
+  collapse library dir [/opt/fsl-qoriq/1.9/sysroots/ppce500v2-fsl-linux-gnuspe/lib] ==> [/opt/fsl-qoriq/1.9/sysroots/ppce500v2-fsl-linux-gnuspe/lib]
+  collapse library dir [/opt/fsl-qoriq/1.9/sysroots/ppce500v2-fsl-linux-gnuspe/usr/lib] ==> [/opt/fsl-qoriq/1.9/sysroots/ppce500v2-fsl-linux-gnuspe/usr/lib]
+  implicit libs: [stdc++;m;gcc_s;gcc;c;gcc_s;gcc]
+  implicit dirs: [/opt/fsl-qoriq/1.9/sysroots/i686-fslsdk-linux/usr/lib/powerpc-fsl-linux/gcc/powerpc-fsl-linux/4.9.2;/opt/fsl-qoriq/1.9/sysroots/ppce500v2-fsl-linux-gnuspe/lib;/opt/fsl-qoriq/1.9/sysroots/ppce500v2-fsl-linux-gnuspe/usr/lib/powerpc-fsl-linux/4.9.2;/opt/fsl-qoriq/1.9/sysroots/ppce500v2-fsl-linux-gnuspe/usr/lib]
+  implicit fwks: []
+
+
+
+
+Detecting CXX [-std=c++14] compiler features compiled with the following output:
+Change Dir: /media/sf_share/project0903/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_da92e/fast"
+/usr/bin/make -f CMakeFiles/cmTC_da92e.dir/build.make CMakeFiles/cmTC_da92e.dir/build
+make[1]: Entering directory `/media/sf_share/project0903/build/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_da92e.dir/feature_tests.cxx.o
+/opt/fsl-qoriq/1.9/sysroots/i686-fslsdk-linux/usr/bin/powerpc-fsl-linux-gnuspe/powerpc-fsl-linux-gnuspe-g++   -m32 -mcpu=8548 -mabi=spe -mspe -mfloat-gprs=double --sysroot=/opt/fsl-qoriq/1.9/sysroots/ppce500v2-fsl-linux-gnuspe    -O2 -pipe -g -feliminate-unused-debug-types    -std=c++14 -o CMakeFiles/cmTC_da92e.dir/feature_tests.cxx.o -c /media/sf_share/project0903/build/CMakeFiles/feature_tests.cxx
+Linking CXX executable cmTC_da92e
+/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_da92e.dir/link.txt --verbose=1
+/opt/fsl-qoriq/1.9/sysroots/i686-fslsdk-linux/usr/bin/powerpc-fsl-linux-gnuspe/powerpc-fsl-linux-gnuspe-g++   -m32 -mcpu=8548 -mabi=spe -mspe -mfloat-gprs=double --sysroot=/opt/fsl-qoriq/1.9/sysroots/ppce500v2-fsl-linux-gnuspe  -O2 -pipe -g -feliminate-unused-debug-types     CMakeFiles/cmTC_da92e.dir/feature_tests.cxx.o  -o cmTC_da92e 
+make[1]: Leaving directory `/media/sf_share/project0903/build/CMakeFiles/CMakeTmp'
+
+
+    Feature record: CXX_FEATURE:0cxx_aggregate_default_initializers
+    Feature record: CXX_FEATURE:1cxx_alias_templates
+    Feature record: CXX_FEATURE:1cxx_alignas
+    Feature record: CXX_FEATURE:1cxx_alignof
+    Feature record: CXX_FEATURE:1cxx_attributes
+    Feature record: CXX_FEATURE:1cxx_attribute_deprecated
+    Feature record: CXX_FEATURE:1cxx_auto_type
+    Feature record: CXX_FEATURE:1cxx_binary_literals
+    Feature record: CXX_FEATURE:1cxx_constexpr
+    Feature record: CXX_FEATURE:1cxx_contextual_conversions
+    Feature record: CXX_FEATURE:1cxx_decltype
+    Feature record: CXX_FEATURE:1cxx_decltype_auto
+    Feature record: CXX_FEATURE:1cxx_decltype_incomplete_return_types
+    Feature record: CXX_FEATURE:1cxx_default_function_template_args
+    Feature record: CXX_FEATURE:1cxx_defaulted_functions
+    Feature record: CXX_FEATURE:1cxx_defaulted_move_initializers
+    Feature record: CXX_FEATURE:1cxx_delegating_constructors
+    Feature record: CXX_FEATURE:1cxx_deleted_functions
+    Feature record: CXX_FEATURE:1cxx_digit_separators
+    Feature record: CXX_FEATURE:1cxx_enum_forward_declarations
+    Feature record: CXX_FEATURE:1cxx_explicit_conversions
+    Feature record: CXX_FEATURE:1cxx_extended_friend_declarations
+    Feature record: CXX_FEATURE:1cxx_extern_templates
+    Feature record: CXX_FEATURE:1cxx_final
+    Feature record: CXX_FEATURE:1cxx_func_identifier
+    Feature record: CXX_FEATURE:1cxx_generalized_initializers
+    Feature record: CXX_FEATURE:1cxx_generic_lambdas
+    Feature record: CXX_FEATURE:1cxx_inheriting_constructors
+    Feature record: CXX_FEATURE:1cxx_inline_namespaces
+    Feature record: CXX_FEATURE:1cxx_lambdas
+    Feature record: CXX_FEATURE:1cxx_lambda_init_captures
+    Feature record: CXX_FEATURE:1cxx_local_type_template_args
+    Feature record: CXX_FEATURE:1cxx_long_long_type
+    Feature record: CXX_FEATURE:1cxx_noexcept
+    Feature record: CXX_FEATURE:1cxx_nonstatic_member_init
+    Feature record: CXX_FEATURE:1cxx_nullptr
+    Feature record: CXX_FEATURE:1cxx_override
+    Feature record: CXX_FEATURE:1cxx_range_for
+    Feature record: CXX_FEATURE:1cxx_raw_string_literals
+    Feature record: CXX_FEATURE:1cxx_reference_qualified_functions
+    Feature record: CXX_FEATURE:0cxx_relaxed_constexpr
+    Feature record: CXX_FEATURE:1cxx_return_type_deduction
+    Feature record: CXX_FEATURE:1cxx_right_angle_brackets
+    Feature record: CXX_FEATURE:1cxx_rvalue_references
+    Feature record: CXX_FEATURE:1cxx_sizeof_member
+    Feature record: CXX_FEATURE:1cxx_static_assert
+    Feature record: CXX_FEATURE:1cxx_strong_enums
+    Feature record: CXX_FEATURE:1cxx_template_template_parameters
+    Feature record: CXX_FEATURE:1cxx_thread_local
+    Feature record: CXX_FEATURE:1cxx_trailing_return_types
+    Feature record: CXX_FEATURE:1cxx_unicode_literals
+    Feature record: CXX_FEATURE:1cxx_uniform_initialization
+    Feature record: CXX_FEATURE:1cxx_unrestricted_unions
+    Feature record: CXX_FEATURE:1cxx_user_literals
+    Feature record: CXX_FEATURE:0cxx_variable_templates
+    Feature record: CXX_FEATURE:1cxx_variadic_macros
+    Feature record: CXX_FEATURE:1cxx_variadic_templates
+
+
+Detecting CXX [-std=c++11] compiler features compiled with the following output:
+Change Dir: /media/sf_share/project0903/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_2a0b5/fast"
+/usr/bin/make -f CMakeFiles/cmTC_2a0b5.dir/build.make CMakeFiles/cmTC_2a0b5.dir/build
+make[1]: Entering directory `/media/sf_share/project0903/build/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_2a0b5.dir/feature_tests.cxx.o
+/opt/fsl-qoriq/1.9/sysroots/i686-fslsdk-linux/usr/bin/powerpc-fsl-linux-gnuspe/powerpc-fsl-linux-gnuspe-g++   -m32 -mcpu=8548 -mabi=spe -mspe -mfloat-gprs=double --sysroot=/opt/fsl-qoriq/1.9/sysroots/ppce500v2-fsl-linux-gnuspe    -O2 -pipe -g -feliminate-unused-debug-types    -std=c++11 -o CMakeFiles/cmTC_2a0b5.dir/feature_tests.cxx.o -c /media/sf_share/project0903/build/CMakeFiles/feature_tests.cxx
+Linking CXX executable cmTC_2a0b5
+/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_2a0b5.dir/link.txt --verbose=1
+/opt/fsl-qoriq/1.9/sysroots/i686-fslsdk-linux/usr/bin/powerpc-fsl-linux-gnuspe/powerpc-fsl-linux-gnuspe-g++   -m32 -mcpu=8548 -mabi=spe -mspe -mfloat-gprs=double --sysroot=/opt/fsl-qoriq/1.9/sysroots/ppce500v2-fsl-linux-gnuspe  -O2 -pipe -g -feliminate-unused-debug-types     CMakeFiles/cmTC_2a0b5.dir/feature_tests.cxx.o  -o cmTC_2a0b5 
+make[1]: Leaving directory `/media/sf_share/project0903/build/CMakeFiles/CMakeTmp'
+
+
+    Feature record: CXX_FEATURE:0cxx_aggregate_default_initializers
+    Feature record: CXX_FEATURE:1cxx_alias_templates
+    Feature record: CXX_FEATURE:1cxx_alignas
+    Feature record: CXX_FEATURE:1cxx_alignof
+    Feature record: CXX_FEATURE:1cxx_attributes
+    Feature record: CXX_FEATURE:0cxx_attribute_deprecated
+    Feature record: CXX_FEATURE:1cxx_auto_type
+    Feature record: CXX_FEATURE:0cxx_binary_literals
+    Feature record: CXX_FEATURE:1cxx_constexpr
+    Feature record: CXX_FEATURE:0cxx_contextual_conversions
+    Feature record: CXX_FEATURE:1cxx_decltype
+    Feature record: CXX_FEATURE:0cxx_decltype_auto
+    Feature record: CXX_FEATURE:1cxx_decltype_incomplete_return_types
+    Feature record: CXX_FEATURE:1cxx_default_function_template_args
+    Feature record: CXX_FEATURE:1cxx_defaulted_functions
+    Feature record: CXX_FEATURE:1cxx_defaulted_move_initializers
+    Feature record: CXX_FEATURE:1cxx_delegating_constructors
+    Feature record: CXX_FEATURE:1cxx_deleted_functions
+    Feature record: CXX_FEATURE:0cxx_digit_separators
+    Feature record: CXX_FEATURE:1cxx_enum_forward_declarations
+    Feature record: CXX_FEATURE:1cxx_explicit_conversions
+    Feature record: CXX_FEATURE:1cxx_extended_friend_declarations
+    Feature record: CXX_FEATURE:1cxx_extern_templates
+    Feature record: CXX_FEATURE:1cxx_final
+    Feature record: CXX_FEATURE:1cxx_func_identifier
+    Feature record: CXX_FEATURE:1cxx_generalized_initializers
+    Feature record: CXX_FEATURE:0cxx_generic_lambdas
+    Feature record: CXX_FEATURE:1cxx_inheriting_constructors
+    Feature record: CXX_FEATURE:1cxx_inline_namespaces
+    Feature record: CXX_FEATURE:1cxx_lambdas
+    Feature record: CXX_FEATURE:0cxx_lambda_init_captures
+    Feature record: CXX_FEATURE:1cxx_local_type_template_args
+    Feature record: CXX_FEATURE:1cxx_long_long_type
+    Feature record: CXX_FEATURE:1cxx_noexcept
+    Feature record: CXX_FEATURE:1cxx_nonstatic_member_init
+    Feature record: CXX_FEATURE:1cxx_nullptr
+    Feature record: CXX_FEATURE:1cxx_override
+    Feature record: CXX_FEATURE:1cxx_range_for
+    Feature record: CXX_FEATURE:1cxx_raw_string_literals
+    Feature record: CXX_FEATURE:1cxx_reference_qualified_functions
+    Feature record: CXX_FEATURE:0cxx_relaxed_constexpr
+    Feature record: CXX_FEATURE:0cxx_return_type_deduction
+    Feature record: CXX_FEATURE:1cxx_right_angle_brackets
+    Feature record: CXX_FEATURE:1cxx_rvalue_references
+    Feature record: CXX_FEATURE:1cxx_sizeof_member
+    Feature record: CXX_FEATURE:1cxx_static_assert
+    Feature record: CXX_FEATURE:1cxx_strong_enums
+    Feature record: CXX_FEATURE:1cxx_template_template_parameters
+    Feature record: CXX_FEATURE:1cxx_thread_local
+    Feature record: CXX_FEATURE:1cxx_trailing_return_types
+    Feature record: CXX_FEATURE:1cxx_unicode_literals
+    Feature record: CXX_FEATURE:1cxx_uniform_initialization
+    Feature record: CXX_FEATURE:1cxx_unrestricted_unions
+    Feature record: CXX_FEATURE:1cxx_user_literals
+    Feature record: CXX_FEATURE:0cxx_variable_templates
+    Feature record: CXX_FEATURE:1cxx_variadic_macros
+    Feature record: CXX_FEATURE:1cxx_variadic_templates
+
+
+Detecting CXX [-std=c++98] compiler features compiled with the following output:
+Change Dir: /media/sf_share/project0903/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_15056/fast"
+/usr/bin/make -f CMakeFiles/cmTC_15056.dir/build.make CMakeFiles/cmTC_15056.dir/build
+make[1]: Entering directory `/media/sf_share/project0903/build/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_15056.dir/feature_tests.cxx.o
+/opt/fsl-qoriq/1.9/sysroots/i686-fslsdk-linux/usr/bin/powerpc-fsl-linux-gnuspe/powerpc-fsl-linux-gnuspe-g++   -m32 -mcpu=8548 -mabi=spe -mspe -mfloat-gprs=double --sysroot=/opt/fsl-qoriq/1.9/sysroots/ppce500v2-fsl-linux-gnuspe    -O2 -pipe -g -feliminate-unused-debug-types    -std=c++98 -o CMakeFiles/cmTC_15056.dir/feature_tests.cxx.o -c /media/sf_share/project0903/build/CMakeFiles/feature_tests.cxx
+Linking CXX executable cmTC_15056
+/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_15056.dir/link.txt --verbose=1
+/opt/fsl-qoriq/1.9/sysroots/i686-fslsdk-linux/usr/bin/powerpc-fsl-linux-gnuspe/powerpc-fsl-linux-gnuspe-g++   -m32 -mcpu=8548 -mabi=spe -mspe -mfloat-gprs=double --sysroot=/opt/fsl-qoriq/1.9/sysroots/ppce500v2-fsl-linux-gnuspe  -O2 -pipe -g -feliminate-unused-debug-types     CMakeFiles/cmTC_15056.dir/feature_tests.cxx.o  -o cmTC_15056 
+make[1]: Leaving directory `/media/sf_share/project0903/build/CMakeFiles/CMakeTmp'
+
+
+    Feature record: CXX_FEATURE:0cxx_aggregate_default_initializers
+    Feature record: CXX_FEATURE:0cxx_alias_templates
+    Feature record: CXX_FEATURE:0cxx_alignas
+    Feature record: CXX_FEATURE:0cxx_alignof
+    Feature record: CXX_FEATURE:0cxx_attributes
+    Feature record: CXX_FEATURE:0cxx_attribute_deprecated
+    Feature record: CXX_FEATURE:0cxx_auto_type
+    Feature record: CXX_FEATURE:0cxx_binary_literals
+    Feature record: CXX_FEATURE:0cxx_constexpr
+    Feature record: CXX_FEATURE:0cxx_contextual_conversions
+    Feature record: CXX_FEATURE:0cxx_decltype
+    Feature record: CXX_FEATURE:0cxx_decltype_auto
+    Feature record: CXX_FEATURE:0cxx_decltype_incomplete_return_types
+    Feature record: CXX_FEATURE:0cxx_default_function_template_args
+    Feature record: CXX_FEATURE:0cxx_defaulted_functions
+    Feature record: CXX_FEATURE:0cxx_defaulted_move_initializers
+    Feature record: CXX_FEATURE:0cxx_delegating_constructors
+    Feature record: CXX_FEATURE:0cxx_deleted_functions
+    Feature record: CXX_FEATURE:0cxx_digit_separators
+    Feature record: CXX_FEATURE:0cxx_enum_forward_declarations
+    Feature record: CXX_FEATURE:0cxx_explicit_conversions
+    Feature record: CXX_FEATURE:0cxx_extended_friend_declarations
+    Feature record: CXX_FEATURE:0cxx_extern_templates
+    Feature record: CXX_FEATURE:0cxx_final
+    Feature record: CXX_FEATURE:0cxx_func_identifier
+    Feature record: CXX_FEATURE:0cxx_generalized_initializers
+    Feature record: CXX_FEATURE:0cxx_generic_lambdas
+    Feature record: CXX_FEATURE:0cxx_inheriting_constructors
+    Feature record: CXX_FEATURE:0cxx_inline_namespaces
+    Feature record: CXX_FEATURE:0cxx_lambdas
+    Feature record: CXX_FEATURE:0cxx_lambda_init_captures
+    Feature record: CXX_FEATURE:0cxx_local_type_template_args
+    Feature record: CXX_FEATURE:0cxx_long_long_type
+    Feature record: CXX_FEATURE:0cxx_noexcept
+    Feature record: CXX_FEATURE:0cxx_nonstatic_member_init
+    Feature record: CXX_FEATURE:0cxx_nullptr
+    Feature record: CXX_FEATURE:0cxx_override
+    Feature record: CXX_FEATURE:0cxx_range_for
+    Feature record: CXX_FEATURE:0cxx_raw_string_literals
+    Feature record: CXX_FEATURE:0cxx_reference_qualified_functions
+    Feature record: CXX_FEATURE:0cxx_relaxed_constexpr
+    Feature record: CXX_FEATURE:0cxx_return_type_deduction
+    Feature record: CXX_FEATURE:0cxx_right_angle_brackets
+    Feature record: CXX_FEATURE:0cxx_rvalue_references
+    Feature record: CXX_FEATURE:0cxx_sizeof_member
+    Feature record: CXX_FEATURE:0cxx_static_assert
+    Feature record: CXX_FEATURE:0cxx_strong_enums
+    Feature record: CXX_FEATURE:1cxx_template_template_parameters
+    Feature record: CXX_FEATURE:0cxx_thread_local
+    Feature record: CXX_FEATURE:0cxx_trailing_return_types
+    Feature record: CXX_FEATURE:0cxx_unicode_literals
+    Feature record: CXX_FEATURE:0cxx_uniform_initialization
+    Feature record: CXX_FEATURE:0cxx_unrestricted_unions
+    Feature record: CXX_FEATURE:0cxx_user_literals
+    Feature record: CXX_FEATURE:0cxx_variable_templates
+    Feature record: CXX_FEATURE:0cxx_variadic_macros
+    Feature record: CXX_FEATURE:0cxx_variadic_templates

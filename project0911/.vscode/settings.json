@@ -1,0 +1,8 @@
+{
+    "files.associations": {
+        "response_frame.h": "c",
+        "data_frame_eth1.h": "c",
+        "protocol_tx.h": "c",
+        "udp_ctrl_ftp.h": "c"
+    }
+}
