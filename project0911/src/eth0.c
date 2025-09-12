@@ -632,7 +632,7 @@ int logout_callback(const struct _u_request* request,
     return U_CALLBACK_CONTINUE;
 }
 
-// 软件版本查询回调 ////////////1111111111 
+//软件版本查询回调 ////////////1111111111 
 //接收到地面信息后 发送 MSG_QUERY_SOFTWARE_VERSION 类别的 message 给中控
 //中控反馈
 int software_version_callback(const struct _u_request* request, 
@@ -1463,7 +1463,7 @@ int reinitiate_callback(const struct _u_request* request,
     return U_CALLBACK_CONTINUE;
 }
 
-// ==================软件回退请求接口回调
+// ==================软件回退请求接口回调===================
 int software_rollback_callback(const struct _u_request* request,
     struct _u_response* response,
     void* user_data) {
@@ -1660,21 +1660,21 @@ int software_update_status_callback(const struct _u_request* request,
         return U_CALLBACK_CONTINUE;
     }
 
-json_t* json_requestId = json_object_get(root, "requestId");
-json_t* json_ruid = json_object_get(root, "ruid");
+    json_t* json_requestId = json_object_get(root, "requestId");
+    json_t* json_ruid = json_object_get(root, "ruid");
 
-if (!json_is_integer(json_requestId) ||
-    !json_is_string(json_ruid)) {
-    json_decref(root);
-    // 添加CORS头信息
-    add_cors_headers(response);
-    ulfius_set_string_body_response(response, 400,
-        "Missing or invalid parameters");
-    return U_CALLBACK_CONTINUE;
-}
+    if (!json_is_integer(json_requestId) ||
+        !json_is_string(json_ruid)) {
+        json_decref(root);
+        // 添加CORS头信息
+        add_cors_headers(response);
+        ulfius_set_string_body_response(response, 400,
+            "Missing or invalid parameters");
+        return U_CALLBACK_CONTINUE;
+    }
 
-const char* requestId = json_string_value(json_requestId);
-const char* ruid = json_string_value(json_ruid);
+    const char* requestId = json_string_value(json_requestId);
+    const char* ruid = json_string_value(json_ruid);
 
 // 3. 创建查询请求和响应结构
 QueryRequest* query_request = (QueryRequest*)malloc(sizeof(QueryRequest));
@@ -1700,9 +1700,9 @@ if (!query_response) {
 
 // 初始化互斥锁和条件变量
 pthread_mutex_t response_mutex;
- pthread_cond_t response_cond;
- pthread_mutex_init(&response_mutex, NULL);
- pthread_cond_init(&response_cond, NULL);
+pthread_cond_t response_cond;
+pthread_mutex_init(&response_mutex, NULL);
+pthread_cond_init(&response_cond, NULL);
 
 // 填充查询请求数据
 strncpy(query_request->requestId, requestId, sizeof(query_request->requestId) - 1);
@@ -1870,9 +1870,9 @@ if (!query_response) {
 
 // 初始化互斥锁和条件变量
 pthread_mutex_t response_mutex;
- pthread_cond_t response_cond;
- pthread_mutex_init(&response_mutex, NULL);
- pthread_cond_init(&response_cond, NULL);
+pthread_cond_t response_cond;
+pthread_mutex_init(&response_mutex, NULL);
+pthread_cond_init(&response_cond, NULL);
 
 // 填充查询请求数据
 strncpy(query_request->requestId, requestId, sizeof(query_request->requestId) - 1);
