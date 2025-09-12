@@ -330,62 +330,6 @@ typedef struct {
 
 
 
-// //========================(自主管理->eth0)应答数据结构=========================
-
-// // 软件版本查询响应数据结构(自主管理->eth0)
-// typedef struct {
-//     char requestId[64];       // 请求ID
-//     char currentVersion[64];      // 当前版本
-//     char backupVersionList[10][64];  // 备份版本列表
-//     char errorInfo[256]; 
-// } QueryVersionResponse_to_eth0;
-
-
-
-// // 软件更新请求响应数据结构(自主管理->eth0)
-// typedef struct {
-//     char requestId[64];       // 请求ID
-//     char errorInfo[256];    // 错误信息（若接口状态为失败，填入失败原因）
-// } UpdateResponse_to_eth0;
-
-
-
-// // 软件更新状态查询响应(查询全局变量)
-// typedef struct {
-//     char requestId[64];       // 请求ID
-//     char status[16];  
-// } QueryUpdateRequset_to_eth0;
-
-
-
-
-// // 软件回退请求响应数据结构(自主管理->eth0)
-// typedef struct {
-//     char requestId[64];       // 请求ID
-//     char errorInfo[256];    // 错误信息（若接口状态为失败，填入失败原因）
-// } RollbackResponse_to_eth0;
-
-// // 软件回退状态查询响应数据结构(自主管理->eth0)
-// typedef struct {
-//     char requestId[64];       // 请求ID
-//     char status[16];          // 状态（回退成功success、回退中updating、回退失败fail）
-//     char errorInfo[256];    // 错误信息（若接口状态为失败，填入失败原因）
-//     char additionalInfo[256]; // 补充信息 若回退状态为失败，填入失败原因
-// } QueryRollbackResponse_to_eth0;
-
-// // 恢复出厂配置请求响应数据结构(自主管理->eth0)
-// typedef struct {
-//     char requestId[64];       // 请求ID
-//     char errorInfo[256];    // 错误信息（若接口状态为失败，填入失败原因）
-// } ReinitiateResponse_to_eth0;
-
-// // 恢复出厂配置状态查询响应数据结构(自主管理->eth0)
-// typedef struct {
-//     char requestId[64];       // 请求ID
-//     char status[16];          // 状态（恢复成功success、恢复中updating、恢复失败fail）
-//     char errorInfo[256];    // 错误信息（若接口状态为失败，填入失败原因）
-//     char additionalInfo[256]; // 补充信息 若恢复状态为失败，填入失败原因
-// } QueryReinitiateResponse_to_eth0;
 
 
 
