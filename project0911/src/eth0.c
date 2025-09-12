@@ -1609,8 +1609,7 @@ int software_rollback_callback(const struct _u_request* request,
 }
 
 
-// ================== 状态查询接口回调（通用） ==================
-// ================== 状态查询回调 ==================
+// ================== 更新状态查询接口回调 ==================
 int software_update_status_callback(const struct _u_request* request,
     struct _u_response* response,
     void* user_data) {
@@ -1781,6 +1780,7 @@ json_decref(root);
 return U_CALLBACK_CONTINUE;
 }
 
+//================软件恢复出厂设置状态查询====================
 int reinitiate_status_callback(const struct _u_request* request,
     struct _u_response* response,
     void* user_data) {
@@ -1847,7 +1847,7 @@ const char* requestId = json_string_value(json_requestId);
 const char* ruid = json_string_value(json_ruid);
 
 // 3. 创建查询请求和响应结构
-QueryRequest* query_request = (QueryRequest*)malloc(sizeof(QueryRequest));
+eth0_data_Query_REINITIATE* query_request = (eth0_data_Query_REINITIATE*)malloc(sizeof(eth0_data_Query_REINITIATE));
 if (!query_request) {
         // 添加CORS头信息
         add_cors_headers(response);
@@ -1857,7 +1857,7 @@ if (!query_request) {
         return U_CALLBACK_CONTINUE;
     }
 
-QueryResponse* query_response = (QueryResponse*)malloc(sizeof(QueryResponse));
+eth0_Query_REINITIATE_Context* query_response = (eth0_Query_REINITIATE_Context*)malloc(sizeof(eth0_Query_REINITIATE_Context));
 if (!query_response) {
         free(query_request);
         // 添加CORS头信息
@@ -1950,6 +1950,7 @@ json_decref(root);
 return U_CALLBACK_CONTINUE;
 }
 
+//===================软件回退状态查询==========================
 int software_rollback_status_callback(const struct _u_request* request,
     struct _u_response* response,
     void* user_data) {
@@ -2016,7 +2017,7 @@ int software_rollback_status_callback(const struct _u_request* request,
     const char* ruid = json_string_value(json_ruid);
 
     // 3. 创建查询请求和响应结构
-    QueryRequest* query_request = (QueryRequest*)malloc(sizeof(QueryRequest));
+    eth0_data_Query_ROLLBACK* query_request = (eth0_data_Query_ROLLBACK*)malloc(sizeof(eth0_data_Query_ROLLBACK));
     if (!query_request) {
         // 添加CORS头信息
         add_cors_headers(response);
@@ -2026,7 +2027,7 @@ int software_rollback_status_callback(const struct _u_request* request,
         return U_CALLBACK_CONTINUE;
     }
     
-    QueryResponse* query_response = (QueryResponse*)malloc(sizeof(QueryResponse));
+    eth0_Query_ROLLBACK_Context* query_response = (eth0_Query_ROLLBACK_Context*)malloc(sizeof(eth0_Query_ROLLBACK_Context));
     if (!query_response) {
         free(query_request);
         // 添加CORS头信息
