@@ -748,18 +748,18 @@ int software_version_callback(const struct _u_request* request,
     json_decref(root);
 
     // 4. 初始化请求上下文（栈分配）
-    eth0_Query_SOFTWARE_VERSION_Context ctx;
-    memset(&ctx, 0, sizeof(ctx));  // 清零所有字段
+    eth0_Query_SOFTWARE_VERSION_Context g_version_ctx;
+    memset(&g_version_ctx, 0, sizeof(g_version_ctx));  // 清零所有字段
     //pthread_mutex_t* mutex = malloc(sizeof(pthread_mutex_t));
     //pthread_cond_t* cond = malloc(sizeof(pthread_cond_t));
     ///pthread_mutex_init(mutex, NULL);
     //pthread_cond_init(cond, NULL);
 
-    strncpy(ctx.requestId, requestId, sizeof(ctx.requestId) - 1);
-    strncpy(ctx.ruid, ruid, sizeof(ctx.ruid) - 1);
+    strncpy(g_version_ctx.requestId, requestId, sizeof(g_version_ctx.requestId) - 1);
+    strncpy(g_version_ctx.ruid, ruid, sizeof(g_version_ctx.ruid) - 1);
     //ctx.response_mutex = mutex;
     //ctx.response_cond = cond;
-    ctx.response_ready = false;
+    g_version_ctx.response_ready = false;
     
 
     // 5. 创建并发送消息给中控
@@ -776,8 +776,8 @@ int software_version_callback(const struct _u_request* request,
 
     if (!enqueue_message(&global_state, &msg)) {
         // 消息队列已满
-        pthread_mutex_destroy(ctx.response_mutex);
-        pthread_cond_destroy(ctx.response_cond);
+        // pthread_mutex_destroy(g_version_ctx.response_mutex);
+        // pthread_cond_destroy(g_version_ctx.response_cond);
         json_t* resp = json_object();
         char requestId_str[64];
         snprintf(requestId_str, sizeof(requestId_str), "%lld", json_integer_value(json_requestId));
@@ -798,14 +798,14 @@ int software_version_callback(const struct _u_request* request,
     clock_gettime(CLOCK_REALTIME, &timeout);
     timeout.tv_sec += 5; // 5秒超时
     
-    while (!ctx.response_ready) {
-        int wait_result = pthread_cond_timedwait(ctx.response_cond, ctx.response_mutex, &timeout);
+    while (!g_version_ctx.response_ready) {
+        int wait_result = pthread_cond_timedwait(g_version_ctx.response_cond, g_version_ctx.response_mutex, &timeout);
         if (wait_result == ETIMEDOUT) {
             break;  // 跳转到超时处理
         }    
     }
 
-    if  (!ctx.response_ready) {
+    if  (!g_version_ctx.response_ready) {
        
 
         json_object_set_new(resp, "requestId", json_string(requestId));
@@ -823,18 +823,18 @@ int software_version_callback(const struct _u_request* request,
     
     // 7. 构造响应JSON
     json_t* json_response = json_object();
-    json_object_set_new(json_response, "requestId", json_string(ctx.requestId));
+    json_object_set_new(json_response, "requestId", json_string(g_version_ctx.requestId));
 
-    if (ctx.errorInfo[0] != '\0') {  // 失败响应
-        json_object_set_new(json_response, "errorInfo", json_string(ctx.errorInfo));
+    if (g_version_ctx.errorInfo[0] != '\0') {  // 失败响应
+        json_object_set_new(json_response, "errorInfo", json_string(g_version_ctx.errorInfo));
         add_cors_headers(response);
         ulfius_set_json_body_response(response, 500, json_response);
     } else {// 成功响应
         json_t* version_list = json_array();
-        for (int i = 0; i < 10 && ctx.backupVersionList[i][0] != '\0'; i++) {
-            json_array_append_new(version_list, json_string(ctx.backupVersionList[i]));
+        for (int i = 0; i < 10 && g_version_ctx.backupVersionList[i][0] != '\0'; i++) {
+            json_array_append_new(version_list, json_string(g_version_ctx.backupVersionList[i]));
         }
-        json_object_set_new(json_response, "currentVersion", json_string(ctx.currentVersion));
+        json_object_set_new(json_response, "currentVersion", json_string(g_version_ctx.currentVersion));
         json_object_set_new(json_response, "backupVersionList", version_list);
         add_cors_headers(response);
         ulfius_set_json_body_response(response, 200, json_response);

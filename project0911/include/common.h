@@ -135,7 +135,7 @@ typedef struct {
     bool response_ready;               // 响应就绪标志
 } eth0_Query_SOFTWARE_VERSION_Context;  //中控-》etho0
 
-
+extern eth0_Query_SOFTWARE_VERSION_Context g_version_ctx;
 
 // 软件更新请求数据结构
 typedef struct {

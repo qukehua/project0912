@@ -234,8 +234,9 @@ void *command_worker_thread(void *arg)
                     //         }                       
                     //     break;
                     // }    
-                    ctx.response_ready = true;  // 设置响应就绪
+                    g_version_ctx.response_ready = true;  // 设置响应就绪
                     pthread_cond_signal(&response_cond);  // 通知等待线程
+                    printf("[Main] 已设置响应就绪，通知eth0线程\n");
                     break;
                 }        
                 //软件版本查询响应
