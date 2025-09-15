@@ -13,7 +13,7 @@ extern "C" {
 	typedef enum {
 		ETH1_TASK_UDP_FTP  = 1,   /* UDP 控制 FTP（通知 + 周期查询） */
 		ETH1_TASK_UDP_SEND = 2,   /* 单纯 UDP 直传文件 */
-		ETH1_TASK_UDP_CMD  = 3    /* UDP 发送指令并等待应答 */
+		ETH1_TASK_UDP_CMD  = 3,    /* UDP 发送指令并等待应答 */
 		ETH1_TASK_VERSION_QUERY = 4  /* 软件版本查询 */
 	} eth1_task_type_t;
 	

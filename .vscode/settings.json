@@ -1,0 +1,6 @@
+{
+    "files.associations": {
+        "eth1.h": "c",
+        "rs422.h": "c"
+    }
+}

@@ -173,39 +173,39 @@ void *command_worker_thread(void *arg)
 
 
                     // 软件更新任务转发给eth1或RS422
-                    if (task->updateType == UPDATE_TYPE_SOFTWARE)
-                    {
+                    // if (task->updateType == UPDATE_TYPE_SOFTWARE)
+                    // {
  
-                        for (int i = 0; i < cnt_ruid; i++) {
-                            // 比较网元ruid                           
-                            // 选择RSS接口进行任务分发
-                            if (task->ruid[i] == RSS422[dev_index]) { 
-                                pthread_mutex_lock(&global_state.rs422_task_mutex[task->dev_index]);
-                                global_state.rs422_current_task[task->dev_index] = task;
-                                global_state.rs422_task_available[task->dev_index] = 1;
-                                pthread_cond_signal(&global_state.rs422_task_cond[task->dev_index]);
-                                pthread_mutex_unlock(&global_state.rs422_task_mutex[task->dev_index]);
-                                printf("[CMD] 已转发任务到RS422-%d: %s\n", task->dev_index, task->filename);
-                                strncpy(task->status, "sending", sizeof(task->status));
-                            }
-                            // 通过ETH1发送
-                            else if (task->ruid[i] == eth1){
-                                pthread_mutex_lock(&global_state.eth1_task_mutex);
-                                global_state.eth1_current_task = task;
-                                global_state.eth1_task_available = 1;
-                                pthread_cond_signal(&global_state.eth1_task_cond);
-                                pthread_mutex_unlock(&global_state.eth1_task_mutex);
-                                printf("[CMD] 已转发任务到ETH1: %s\n", task->ruid);
-                            }
-                            else
-                            {
-                                printf("[CMD] 未知的RUID，无法转发任务: %s\n", task->ruid);
-                                strncpy(task->status, "failed", sizeof(task->status));
-                                return NULL;
-                            }
-                        }
-                        break;
-                    }
+                    //     for (int i = 0; i < cnt_ruid; i++) {
+                    //         // 比较网元ruid                           
+                    //         // 选择RSS接口进行任务分发
+                    //         if (task->ruid[i] == rs422_tasks[task->dev_index]) { 
+                    //             pthread_mutex_lock(&global_state.rs422_task_mutex[task->dev_index]);
+                    //             global_state.rs422_current_task[task->dev_index] = task;
+                    //             global_state.rs422_task_available[task->dev_index] = 1;
+                    //             pthread_cond_signal(&global_state.rs422_task_cond[task->dev_index]);
+                    //             pthread_mutex_unlock(&global_state.rs422_task_mutex[task->dev_index]);
+                    //             printf("[CMD] 已转发任务到RS422-%d: %s\n", task->dev_index, task->filename);
+                    //             strncpy(task->status, "sending", sizeof(task->status));
+                    //         }
+                    //         // 通过ETH1发送
+                    //         else if (task->ruid[i] == eth1){
+                    //             pthread_mutex_lock(&global_state.eth1_task_mutex);
+                    //             global_state.eth1_current_task = task;
+                    //             global_state.eth1_task_available = 1;
+                    //             pthread_cond_signal(&global_state.eth1_task_cond);
+                    //             pthread_mutex_unlock(&global_state.eth1_task_mutex);
+                    //             printf("[CMD] 已转发任务到ETH1: %s\n", task->ruid);
+                    //         }
+                    //         else
+                    //         {
+                    //             printf("[CMD] 未知的RUID，无法转发任务: %s\n", task->ruid);
+                    //             strncpy(task->status, "failed", sizeof(task->status));
+                    //             return NULL;
+                    //         }
+                    //     }
+                    //     break;
+                    // }
                 }    
                 //软件版本查询请求
                 case MSG_QUERY_SOFTWARE_VERSION:
@@ -213,27 +213,30 @@ void *command_worker_thread(void *arg)
                     eth0_data_Query_SOFTWARE_VERSION* request = (eth0_data_Query_SOFTWARE_VERSION*)msg.data;
                     printf("[CMD] 收到软件版本查询请求: %s\n", request->requestId);
                     
-                    pthread_mutex_lock(request->response_mutex);
+                    //pthread_mutex_lock(request->response_mutex);
 
    
-                    for (int i = 0; i < cnt_ruid; i++) {
-                        // 比较网元ruid
-                        if (request->ruid[i] == eth1) {
-                            // 发送ETH1命令并等待响应
-                            pthread_mutex_lock(&global_state.eth1_task_mutex);
-                            global_state.eth1_current_task = task;
-                            global_state.eth1_task_available = 1;
-                            pthread_cond_signal(&global_state.eth1_task_cond);
-                            pthread_mutex_unlock(&global_state.eth1_task_mutex);
-                            printf("[CMD] 已转发软件版本查询请求到ETH1: %s\n", task->ruid);
-                        }
-                        else{
-                                printf("[CMD] 未知的RUID，无法转发任务: %s\n", task->ruid);
-                                strncpy(task->status, "failed", sizeof(task->status));
-                                return NULL;
-                            }                       
-                        break;
-                    }    
+                    // for (int i = 0; i < cnt_ruid; i++) {
+                    //     // 比较网元ruid
+                    //     if (request->ruid[i] == eth1) {
+                    //         // 发送ETH1命令并等待响应
+                    //         pthread_mutex_lock(&global_state.eth1_task_mutex);
+                    //         global_state.eth1_current_task = task;
+                    //         global_state.eth1_task_available = 1;
+                    //         pthread_cond_signal(&global_state.eth1_task_cond);
+                    //         pthread_mutex_unlock(&global_state.eth1_task_mutex);
+                    //         printf("[CMD] 已转发软件版本查询请求到ETH1: %s\n", task->ruid);
+                    //     }
+                    //     else{
+                    //             printf("[CMD] 未知的RUID，无法转发任务: %s\n", task->ruid);
+                    //             strncpy(task->status, "failed", sizeof(task->status));
+                    //             return NULL;
+                    //         }                       
+                    //     break;
+                    // }    
+                    ctx.response_ready = true;  // 设置响应就绪
+                    pthread_cond_signal(&response_cond);  // 通知等待线程
+                    break;
                 }        
                 //软件版本查询响应
                 case MSG_RESPONSE_SOFTWARE_VERSION:
@@ -242,23 +245,16 @@ void *command_worker_thread(void *arg)
                     QueryVersionResponse_to_manage* response = (QueryVersionResponse_to_manage*)msg.data;
                     printf("[CMD] 收到软件版本查询响应: %s\n", response->requestId);
    
-                    // 复制请求ID
-                    strncpy(response->requestId, request->requestId, sizeof(response->requestId) - 1);
-                    response->requestId[sizeof(response->requestId) - 1] = '\0';
                     
                     // 假设从ETH1响应中获取版本信息
                     // 当前版本
-                    strncpy(response->currentVersion, resp.data.current_version, 
-                            sizeof(response->currentVersion) - 1);
-                    response->currentVersion[sizeof(response->currentVersion) - 1] = '\0';
-                    
-                    // 上一版本
-                    strncpy(response->lastVersion, resp.data.last_version, 
-                            sizeof(response->lastVersion) - 1);
-                    response->lastVersion[sizeof(response->lastVersion) - 1] = '\0';
-                    
-                    // 版本数量
-                    response->VersionCount = resp.data.version_count;
+                    printf("当前版本: %s\n", response->currentVersion);
+
+                    //上一版本
+                    printf("当前版本: %s\n", response->lastVersion);
+
+                    //版本数量
+                    printf("版本数量: %d\n", response->VersionCount);
                     
                     // 构造JSON响应
                     json_t* resp_json = json_object();
@@ -288,20 +284,45 @@ void *command_worker_thread(void *arg)
                             
          
                 // 软件回退状态查询
-                case MSG_QUERY_ROLLBACK_STATUS:{}
+                case MSG_QUERY_ROLLBACK_STATUS:
+                {
+                    eth0_data_Query_ROLLBACK* request = (eth0_data_Query_ROLLBACK*)msg.data;
+                    printf("[CMD] 收到软件回退状态查询请求: %s\n", request->requestId);
+
+
+
+                }
 
 
                 // 软件回退状态响应
-                case MSG_RESPONSE_ROLLBACK_STATUS:{}
+                case MSG_RESPONSE_ROLLBACK_STATUS:
+                {
+                    //成功响应
+                    QueryVersionResponse_to_manage* response = (QueryVersionResponse_to_manage*)msg.data;
+                    printf("[CMD] 收到软件回退状态响应响应: %s\n", response->requestId);
+
+
+
+                }
               
 
                 // 恢复出厂配置状态查询
-                case MSG_QUERY_REINITIATE_STATUS:{}
+                case MSG_QUERY_REINITIATE_STATUS:{
+                    eth0_data_Query_REINITIATE* request = (eth0_data_Query_REINITIATE*)msg.data;
+                    printf("[CMD] 收到恢复出厂配置状态查询请求: %s\n", request->requestId);
+
+                }
 
 
                 // 恢复出厂配置状态响应
     
-                case MSG_RESPONSE_REINITIATE_STATUS:{}
+                case MSG_RESPONSE_REINITIATE_STATUS:{
+                    QueryReinitiateResponse_to_manage* response = (QueryReinitiateResponse_to_manage*)msg.data;
+                    printf("[CMD] 收到恢复出厂配置状态响应: %s\n", request->requestId);
+
+
+
+                }
             }   
         }
     }

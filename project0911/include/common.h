@@ -21,6 +21,7 @@
 #include <sys/ioctl.h>
 #include <net/if.h>
 #include <errno.h>
+#include <stdbool.h>
 
 // ================== 全局定义 ==================
 #define PORT 443
@@ -83,7 +84,7 @@ typedef enum {
     MSG_RESPONSE_SOFTWARE_VERSION,    //软件版本查询端口反馈(自主管理<-端口)
 
     MSG_UPDATE_TASK,                  //接收软件更新指令(eth0->自主管理)
-    MSG_RESPONSE_UPDATE_TASK，       // 软件版本更新指令端口反馈(自主管理<-端口)
+    MSG_RESPONSE_UPDATE_TASK,         // 软件版本更新指令端口反馈(自主管理<-端口)
 
     MSG_QUERY_UPDATE_STATUS,          //软件更新状态查询(eth0->自主管理) //不需要转发了，直接反馈
 
@@ -97,7 +98,7 @@ typedef enum {
     MSG_RESPONSE_REINITIATE_TASK,    //恢复出厂设置结果指令反馈(自主管理<-端口)
 
     MSG_QUERY_REINITIATE_STATUS,      //接收恢复出厂设置结果状态查询(eth0->自主管理)
-    MSG_RESPONSE_REINITIATE_STATUS,    //恢复出厂设置结果状态查询(自主管理<-端口)
+    MSG_RESPONSE_REINITIATE_STATUS    //恢复出厂设置结果状态查询(自主管理<-端口)
 } MessageType;  //定义 主控接收的消息类型，作为 message的一个属性
 
 // 消息来源类型
@@ -126,7 +127,7 @@ typedef struct {
 typedef struct {
     int requestId;       // 请求ID
     char ruid[64];       //uint8_t ruid;            // 网元RUID
-    char currentVersion[64]；
+    char currentVersion[64];   // 当前软件版本
     char backupVersionList[10][64];
     char errorInfo[256];    // 错误信息（若接口状态为失败，填入失败原因）
     //pthread_mutex_t*  response_mutex; // 用于同步的互斥锁
