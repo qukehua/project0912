@@ -1677,7 +1677,7 @@ int software_update_status_callback(const struct _u_request* request,
     const char* ruid = json_string_value(json_ruid);
 
 // 3. 创建查询请求和响应结构
-QueryRequest* query_request = (QueryRequest*)malloc(sizeof(QueryRequest));
+eth0_data_Query_UPDATE_SOFTWARE* query_request = (eth0_data_Query_UPDATE_SOFTWARE*)malloc(sizeof(eth0_data_Query_UPDATE_SOFTWARE));
 if (!query_request) {
         // 添加CORS头信息
         add_cors_headers(response);
@@ -1687,7 +1687,7 @@ if (!query_request) {
         return U_CALLBACK_CONTINUE;
     }
 
-QueryResponse* query_response = (QueryResponse*)malloc(sizeof(QueryResponse));
+eth0_Query_UPDATE_SOFTWARE_Context* query_response = (eth0_Query_UPDATE_SOFTWARE_Context*)malloc(sizeof(eth0_Query_UPDATE_SOFTWARE_Context));
 if (!query_response) {
         free(query_request);
         // 添加CORS头信息

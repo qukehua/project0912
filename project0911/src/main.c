@@ -210,7 +210,7 @@ void *command_worker_thread(void *arg)
                 //软件版本查询请求
                 case MSG_QUERY_SOFTWARE_VERSION:
                 {
-                    QueryRequest* request = (QueryRequest*)msg.data;
+                    eth0_data_Query_SOFTWARE_VERSION* request = (eth0_data_Query_SOFTWARE_VERSION*)msg.data;
                     printf("[CMD] 收到软件版本查询请求: %s\n", request->requestId);
                     
                     pthread_mutex_lock(request->response_mutex);
@@ -288,21 +288,24 @@ void *command_worker_thread(void *arg)
                             
          
                 // 软件回退状态查询
-                case MSG_QUERY_ROLLBACK_STATUS:
+                case MSG_QUERY_ROLLBACK_STATUS:{}
 
 
                 // 软件回退状态响应
-                case MSG_RESPONSE_ROLLBACK_STATUS:
+                case MSG_RESPONSE_ROLLBACK_STATUS:{}
               
 
                 // 恢复出厂配置状态查询
-                case MSG_QUERY_REINITIATE_STATUS:
+                case MSG_QUERY_REINITIATE_STATUS:{}
 
 
                 // 恢复出厂配置状态响应
-                case MSG_RESPONSE_REINITIATE_STATUS:
-
-}
+    
+                case MSG_RESPONSE_REINITIATE_STATUS:{}
+            }   
+        }
+    }
+}     
 
 // ================== 消息队列操作 ==================
 int enqueue_message(GlobalState* state,Message *msg)

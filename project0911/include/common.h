@@ -150,6 +150,20 @@ typedef struct {
 } eth0_Request_UPDATE_SOFTWARE_Context;    // 中控-》etho0
 
 
+//软件更新状态查询数据结构
+typedef struct{
+    int requestId;       // 请求ID
+    char ruid[64];            // 网元RUID
+} eth0_data_Query_UPDATE_SOFTWARE; // eth0->中控
+
+
+typedef struct {
+    int requestId;       // 请求ID
+    char errorInfo[256];    // 错误信息（若接口状态为失败，填入失败原因）
+    bool response_ready;               // 响应就绪标志
+} eth0_Query_UPDATE_SOFTWARE_Context;    // 中控-》etho0
+
+
 // 恢复出厂配置请求数据结构 
 typedef struct {
     int requestId;       // 请求ID
