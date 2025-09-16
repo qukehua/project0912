@@ -210,12 +210,26 @@ void *command_worker_thread(void *arg)
                 //软件版本查询请求
                 case MSG_QUERY_SOFTWARE_VERSION:
                 {
-                    eth0_data_Query_SOFTWARE_VERSION* request = (eth0_data_Query_SOFTWARE_VERSION*)msg.data;
+                    QueryVersionRequest_to_device* request = (QueryVersionRequest_to_device*)msg.data;
                     printf("[CMD] 收到软件版本查询请求: %s\n", request->requestId);
                     
                     //pthread_mutex_lock(request->response_mutex);
-
-   
+                    for (int i = 0; i < cnt_ruid; i++) {
+                    //     // 比较网元ruid
+                        if (request->ruid[i] == eth1) {
+                    
+                            int result = eth1_software_version_callback(&request,&response)
+                            if (result != 0) {
+                            printf("[ERROR] Failed to query software version, error code: %d\n", result);
+                            }
+                            printf("[CMD] 已转发软件版本查询请求到ETH1: %s\n", task->ruid);
+                            }
+                            else{
+                                    printf("[CMD] 未知的RUID，无法转发任务: %s\n", task->ruid);
+                                    strncpy(task->status, "failed", sizeof(task->status));
+                                    return NULL;
+                            }                           
+                    }
                     // for (int i = 0; i < cnt_ruid; i++) {
                     //     // 比较网元ruid
                     //     if (request->ruid[i] == eth1) {
@@ -234,48 +248,48 @@ void *command_worker_thread(void *arg)
                     //         }                       
                     //     break;
                     // }    
-                    g_version_ctx.response_ready = true;  // 设置响应就绪
-                    pthread_cond_signal(&response_cond);  // 通知等待线程
-                    printf("[Main] 已设置响应就绪，通知eth0线程\n");
+
                     break;
                 }        
                 //软件版本查询响应
                 case MSG_RESPONSE_SOFTWARE_VERSION:
                 {   
                     //成功响应
-                    QueryVersionResponse_to_manage* response = (QueryVersionResponse_to_manage*)msg.data;
+                    g_version_ctx* response = (g_version_ctx*)msg.data;
                     printf("[CMD] 收到软件版本查询响应: %s\n", response->requestId);
    
                     
-                    // 假设从ETH1响应中获取版本信息
-                    // 当前版本
-                    printf("当前版本: %s\n", response->currentVersion);
+                    // // 假设从ETH1响应中获取版本信息
+                    // // 当前版本
+                    // printf("当前版本: %s\n", response->currentVersion);
 
-                    //上一版本
-                    printf("当前版本: %s\n", response->lastVersion);
+                    // //上一版本
+                    // printf("当前版本: %s\n", response->lastVersion);
 
-                    //版本数量
-                    printf("版本数量: %d\n", response->VersionCount);
+                    // //版本数量
+                    // printf("版本数量: %d\n", response->VersionCount);
                     
-                    // 构造JSON响应
-                    json_t* resp_json = json_object();
-                    json_object_set_new(resp_json, "requestId", json_string(response->requestId));
-                    json_object_set_new(resp_json, "currentVersion", json_string(response->currentVersion));
-                    json_object_set_new(resp_json, "lastVersion", json_string(response->lastVersion));
-                    json_object_set_new(resp_json, "versionCount", json_integer(response->VersionCount));
+                    // // 构造JSON响应
+                    // json_t* resp_json = json_object();
+                    // json_object_set_new(resp_json, "requestId", json_string(response->requestId));
+                    // json_object_set_new(resp_json, "currentVersion", json_string(response->currentVersion));
+                    // json_object_set_new(resp_json, "lastVersion", json_string(response->lastVersion));
+                    // json_object_set_new(resp_json, "versionCount", json_integer(response->VersionCount));
                     
-                    // 转换为字符串并存储
-                    char* json_str = json_dumps(resp_json, JSON_COMPACT);
-                    if (json_str) {
-                        printf("[CMD] Version query response: %s\n", json_str);
-                        free(json_str);
-                    }
+                    // // 转换为字符串并存储
+                    // char* json_str = json_dumps(resp_json, JSON_COMPACT);
+                    // if (json_str) {
+                    //     printf("[CMD] Version query response: %s\n", json_str);
+                    //     free(json_str);
+                    // }
                     
-                    // 释放JSON对象
-                    json_decref(resp_json);
+                    // // 释放JSON对象
+                    // json_decref(resp_json);
 
                     // 通知ETH0线程响应已准备好
-                    pthread_cond_signal(request->response_cond);
+                    g_version_ctx.response_ready = true;  // 设置响应就绪
+                    pthread_cond_signal(request->response_cond);  // 通知等待线程
+                    printf("[Main] 已设置响应就绪，通知eth0线程\n");
                     break;
                 }
  
