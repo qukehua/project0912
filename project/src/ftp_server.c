@@ -1,5 +1,5 @@
 #define _GNU_SOURCE
-#include "../include/ftp_server.h"
+#include "ftp_server.h"
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
