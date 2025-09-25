@@ -22,37 +22,51 @@ int cnt_ruid;
 software_info list_ruid[MAX_RUID_NUM]; // 存储多个网元的信息数组
 
 
-// ================== 主函数 ==================
-int main()
-{
-    // 初始化互斥锁和条件变量
-    memset(&global_state, 0, sizeof(GlobalState));
-    cnt_ruid = 0;                                            // 初始化 RUID 计数器
-    pthread_mutex_init(&global_state.ruid_list_mutex, NULL); // 新增互斥锁
-    pthread_mutex_init(&global_state.queue_mutex, NULL);
-    pthread_cond_init(&global_state.queue_cond, NULL);
-    pthread_mutex_init(&global_state.dl_task_mutex, NULL);
-    pthread_cond_init(&global_state.dl_task_cond, NULL);
-    pthread_mutex_init(&global_state.update_task_mutex, NULL);
-    pthread_mutex_init(&global_state.timed_task_mutex, NULL);
-    pthread_mutex_init(&global_state.blacklist_mutex, NULL);
-    pthread_mutex_init(&global_state.tracked_task_mutex, NULL);
-    global_state.tracked_task_count = 0;
-    pthread_mutex_init(&global_state.can0_task_mutex, NULL);
-    pthread_cond_init(&global_state.can0_task_cond, NULL);
-    pthread_mutex_init(&global_state.can1_task_mutex, NULL);
-    pthread_cond_init(&global_state.can1_task_cond, NULL);
-    pthread_mutex_init(&global_state.eth1_task_mutex, NULL);
-    pthread_cond_init(&global_state.eth1_task_cond, NULL);
-    for(int i = 0; i < 5; i++) {
-    // pthread_mutex_init(&global_state.rs422_task_mutex[i], NULL);
-    // pthread_cond_init(&global_state.rs422_task_cond[i], NULL);
+
+static void on_eth1_msg(void* user, const Eth1Msg* msg) {
+  switch (msg->type) {
+    case ETH1_MSG_ACK:
+      // 这里把 msg->u.ack.payload.buf/len 转给 REST/上层
+      break;
+    case ETH1_MSG_PROGRESS:
+      // 进度上报（FTP=stage1，分片直传=stage2）
+      break;
+    case ETH1_MSG_DONE:
+      // status==0 表示成功；last_resp 带最后一次应答的原始参数字节
+      break;
+    default: break;
+  }
 }
 
 
-    // 初始化RS422模块
-    // rs422_init(&global_state);
+static void on_rs422_msg(void* user, const Rs422Msg* msg) {
+  switch (msg->type) {
+    case Rs422AckMsg:
+      // 这里把 msg->u.ack.payload.buf/len 转给 REST/上层
+      break;
+    case Rs422ProgressMsg:
+      // 进度上报（FTP=stage1，分片直传=stage2）
+      break;
+    case Rs422DoneMsg:
+      // status==0 表示成功；last_resp 带最后一次应答的原始参数字节
+      break;
+    default: break;
+  }
+}
 
+
+
+int app_start(void) {
+    if (eth1_init(on_eth1_msg, NULL) != 0) {
+        printf("ETH1 init failed\n");
+        return -1;
+    }
+
+    if (rs422_init(on_rs422_msg, NULL) != 0) {
+        printf("RS422 init failed\n");
+        return -1;
+    }
+    
     // 启动eth0接口线程
     pthread_t eth0_tid;
     printf("[DEBUG] 准备启动eth0接口线程 (HTTPS服务器)...\n");
@@ -83,6 +97,30 @@ int main()
     printf("[DEBUG] 模拟处理线程已创建\n");
 
 
+    //  ================== 创建ETH1服务线程 ==================
+    pthread_t eth1_udp_tid, eth1_ftp_tid;
+    // 创建ETH1 UDP线程
+    pthread_create(&eth1_udp_tid, NULL, eth1_thread, NULL) ;
+    // 创建ETH1 FTP线程
+    pthread_create(&eth1_ftp_tid, NULL, eth1_thread, NULL) ;
+
+
+
+    //  ================== 创建RS422服务线程 ==================
+    pthread_t rs422_tid_0, rs422_tid_1, rs422_tid_2, rs422_tid_3, rs422_tid_4;
+    // 创建RS422_DEV_0线程
+    pthread_create(&rs422_tid_0, NULL, rs422_thread, NULL) ;
+    // // 创建RS422_DEV_1线程
+    // pthread_create(&rs422_tid_1, NULL, rs422_thread, NULL) ;
+    // // 创建RS422_DEV_2线程
+    // pthread_create(&rs422_tid_2, NULL, rs422_thread, NULL) ;
+    // // 创建RS422_DEV_3线程
+    // pthread_create(&rs422_tid_3, NULL, rs422_thread, NULL) ;
+    // // 创建RS422_DEV_4线程
+    // pthread_create(&rs422_tid_4, NULL, rs422_thread, NULL) ;
+
+
+    
     //  ================== 创建CAN服务线程 ==================
     // 注意：can_service_thread函数当前没有实现，已注释掉
     // pthread_t can0_tid, can1_tid;
@@ -91,29 +129,62 @@ int main()
     // 创建CAN1 线程
     // pthread_create(&can1_tid, NULL, can_service_thread, NULL);
 
+    return 0;
+}
 
 
-    //  ================== 创建ETH1服务线程 ==================
-    pthread_t eth1_udp_tid, eth1_ftp_tid;
-    // 创建ETH1 UDP线程
-    pthread_create(&eth1_udp_tid, NULL, eth1_service_thread, NULL) ;
-    // 创建ETH1 FTP线程
-    pthread_create(&eth1_ftp_tid, NULL, eth1_service_thread, NULL) ;
+void app_stop(void){
+    //关闭线程
+    pthread_join(eth0_tid, NULL);
+    pthread_join(ftp_dl_tid, NULL);
+    pthread_join(timer_tid, NULL);
+    pthread_join(command_worker_tid, NULL);
+    // 注意：can_service_thread函数当前没有实现，已注释掉
+    // pthread_join(can0_tid, NULL);
+    // pthread_join(can1_tid, NULL);
+    eth1_shutdown();
+    pthread_join(eth1_udp_tid, NULL);
+    pthread_join(eth1_ftp_tid, NULL);
+    rs422_shutdown();
+    pthread_join(rs422_tid_0, NULL);
+    // pthread_join(rs422_tid_1, NULL);
+    // pthread_join(rs422_tid_2, NULL);
+    // pthread_join(rs422_tid_3, NULL);
+    // pthread_join(rs422_tid_4, NULL);
 
 
+    // 清理资源 - 已在eth0.c中实现
+    // cleanup_resources();
+}
+// ================== 主函数 ==================
+int main()
+{
+    // 初始化互斥锁和条件变量
+    memset(&global_state, 0, sizeof(GlobalState));
+    cnt_ruid = 0;                                            // 初始化 RUID 计数器
+    pthread_mutex_init(&global_state.ruid_list_mutex, NULL); // 新增互斥锁
+    pthread_mutex_init(&global_state.queue_mutex, NULL);
+    pthread_cond_init(&global_state.queue_cond, NULL);
+    pthread_mutex_init(&global_state.dl_task_mutex, NULL);
+    pthread_cond_init(&global_state.dl_task_cond, NULL);
+    pthread_mutex_init(&global_state.update_task_mutex, NULL);
+    pthread_mutex_init(&global_state.timed_task_mutex, NULL);
+    pthread_mutex_init(&global_state.blacklist_mutex, NULL);
+    pthread_mutex_init(&global_state.tracked_task_mutex, NULL);
+    global_state.tracked_task_count = 0;
+    pthread_mutex_init(&global_state.can0_task_mutex, NULL);
+    pthread_cond_init(&global_state.can0_task_cond, NULL);
+    pthread_mutex_init(&global_state.can1_task_mutex, NULL);
+    pthread_cond_init(&global_state.can1_task_cond, NULL);
+    pthread_mutex_init(&global_state.eth1_task_mutex, NULL);
+    pthread_cond_init(&global_state.eth1_task_cond, NULL);
+    for(int i = 0; i < 5; i++) {
+    pthread_mutex_init(&global_state.rs422_task_mutex[i], NULL);
+    pthread_cond_init(&global_state.rs422_task_cond[i], NULL);
+    }
 
-    // //  ================== 创建RS422服务线程 ==================
-    // pthread_t rs422_tid_0, rs422_tid_1, rs422_tid_2, rs422_tid_3, rs422_tid_4;
-    // // 创建RS422_DEV_0线程
-    // pthread_create(&rs422_tid_0, NULL, rs422_service_thread, NULL) ;
-    // // 创建RS422_DEV_1线程
-    // pthread_create(&rs422_tid_1, NULL, rs422_service_thread, NULL) ;
-    // // 创建RS422_DEV_2线程
-    // pthread_create(&rs422_tid_2, NULL, rs422_service_thread, NULL) ;
-    // // 创建RS422_DEV_3线程
-    // pthread_create(&rs422_tid_3, NULL, rs422_service_thread, NULL) ;
-    // // 创建RS422_DEV_4线程
-    // pthread_create(&rs422_tid_4, NULL, rs422_service_thread, NULL) ;
+    app_start();
+    printf("System initialized successfully\n");
 
     // 设置信号处理
     signal(SIGINT, signal_handler);
@@ -125,27 +196,11 @@ int main()
         sleep(1);
     }
 
-    // 等待线程结束
-    pthread_join(eth0_tid, NULL);
-    pthread_join(ftp_dl_tid, NULL);
-    pthread_join(timer_tid, NULL);
-    pthread_join(command_worker_tid, NULL);
-    // 注意：can_service_thread函数当前没有实现，已注释掉
-    // pthread_join(can0_tid, NULL);
-    // pthread_join(can1_tid, NULL);
-    pthread_join(eth1_udp_tid, NULL);
-    pthread_join(eth1_ftp_tid, NULL);
-    // pthread_join(rs422_tid_0, NULL);
-    // pthread_join(rs422_tid_1, NULL);
-    // pthread_join(rs422_tid_2, NULL);
-    // pthread_join(rs422_tid_3, NULL);
-    // pthread_join(rs422_tid_4, NULL);
-
-
-    // 清理资源 - 已在eth0.c中实现
-    // cleanup_resources();
+    app_stop();
     printf("System shutdown gracefully\n");
     return 0;
+    // 等待线程结束
+
 }
 
 
@@ -170,42 +225,61 @@ void *command_worker_thread(void *arg)
                 {
                     UpdateTask *task = (UpdateTask *)msg.data;
                     printf("[CMD] 收到更新任务: %s\n", task->requestId);
+                     for (int i = 0; i < cnt_ruid; i++) {
+                        if (request->ruid[i] == NIXYK_DEVID_BASEBAND) { //eth1设备标识符
+                            // 创建ETH1任务
+                            Eth1Task* eth1_task = malloc(sizeof(Eth1Task));
+                            eth1_task->type = ETH1_TASK_RECONFIG_EXECUTE;
+                            eth1_task->task_id = strdup(request->requestId);
+                            eth1_task.u.reconfig.target.ruid = NIXYK_DEVID_BASEBAND;      // 目标设备
+                            eth1_task.u.reconfig.policy = CTRL_POLICY_DEFAULT();
+                            eth1_task.u.reconfig.xfer.method = FT_UDP_CTRL_FTP;
+                            eth1_task.u.reconfig.xfer.file_path = "/opt/pkg/update.bin";
+                            eth1_task.u.reconfig.xfer.ftp.user = "u";     // 按需填写
+                            eth1_task.u.reconfig.xfer.ftp.pass = "p";
+                            eth1_task.u.reconfig.xfer.ftp.url  = "ftp://server/path/update.bin";
+                            eth1_task.u.reconfig.xfer.ftp.file_type = 0xFE;  // 
+                            eth1_task.u.reconfig.xfer.ftp.sub_type  = 0x01;
+                            eth1_task.u.reconfig.xfer.ftp.op_type   = 0x11;  // 写入
+                            eth1_task.u.reconfig.cmd_prepare_req = /* 2-1 指令码 */;
+                            eth1_task.u.reconfig.cmd_prepare_ack = /* 2-2 应答码 */;
+                            eth1_task.u.reconfig.cmd_start_req   = /* 2-3 指令码 (无需等待ACK) */;
 
+                            
+                            
+                            // 将任务入队给ETH1线程处理
+                            int result = eth1_enqueue_task(eth1_task);
+                            if (result != 0) {
+                                printf("[ERROR] Failed to enqueue version query task: %d\n", result);
+                                free(eth1_task->requestId);
+                                free(eth1_task);
+                                return NULL;
+                            }
+                            
+                            printf("[CMD] 已将软件版本查询任务发送给ETH1: %s\n", request->requestId);
+                            break;
+                        }
+                         if (request->ruid[i] == NIXYK_DEVID_ISL_1_MGMT) { //rs422设备标识符
+                            // 创建RS422任务
+                            Rs422Task* rs422_task = malloc(sizeof(Rs422Task));
+                            rs422_task->type = RS422_TASK_SEND_DATA;
+                            rs422_task->task_id = strdup(request->requestId);
 
-                    // 软件更新任务转发给eth1或RS422
-                    // if (task->updateType == UPDATE_TYPE_SOFTWARE)
-                    // {
- 
-                    //     for (int i = 0; i < cnt_ruid; i++) {
-                    //         // 比较网元ruid                           
-                    //         // 选择RSS接口进行任务分发
-                    //         if (task->ruid[i] == rs422_tasks[task->dev_index]) { 
-                    //             pthread_mutex_lock(&global_state.rs422_task_mutex[task->dev_index]);
-                    //             global_state.rs422_current_task[task->dev_index] = task;
-                    //             global_state.rs422_task_available[task->dev_index] = 1;
-                    //             pthread_cond_signal(&global_state.rs422_task_cond[task->dev_index]);
-                    //             pthread_mutex_unlock(&global_state.rs422_task_mutex[task->dev_index]);
-                    //             printf("[CMD] 已转发任务到RS422-%d: %s\n", task->dev_index, task->filename);
-                    //             strncpy(task->status, "sending", sizeof(task->status));
-                    //         }
-                    //         // 通过ETH1发送
-                    //         else if (task->ruid[i] == eth1){
-                    //             pthread_mutex_lock(&global_state.eth1_task_mutex);
-                    //             global_state.eth1_current_task = task;
-                    //             global_state.eth1_task_available = 1;
-                    //             pthread_cond_signal(&global_state.eth1_task_cond);
-                    //             pthread_mutex_unlock(&global_state.eth1_task_mutex);
-                    //             printf("[CMD] 已转发任务到ETH1: %s\n", task->ruid);
-                    //         }
-                    //         else
-                    //         {
-                    //             printf("[CMD] 未知的RUID，无法转发任务: %s\n", task->ruid);
-                    //             strncpy(task->status, "failed", sizeof(task->status));
-                    //             return NULL;
-                    //         }
-                    //     }
-                    //     break;
-                    // }
+                            
+                            // 将任务入队给RS422线程处理
+                            int result = rs422_enqueue_task(rs422_task);
+                            if (result != 0) {
+                                printf("[ERROR] Failed to enqueue RS422 send task: %d\n", result);
+                                free(rs422_task->task_id);
+                                free(rs422_task);
+                                return NULL;
+                            }
+                            
+                            printf("[CMD] 已将软件版本查询任务发送给RS422: %s\n", request->requestId);
+                            break;
+                        }
+                    }
+                    break;
                 }    
                 //软件版本查询请求
                 case MSG_QUERY_SOFTWARE_VERSION:
@@ -213,128 +287,310 @@ void *command_worker_thread(void *arg)
                     QueryVersionRequest_to_device* request = (QueryVersionRequest_to_device*)msg.data;
                     printf("[CMD] 收到软件版本查询请求: %s\n", request->requestId);
                     
-                    //pthread_mutex_lock(request->response_mutex);
                     for (int i = 0; i < cnt_ruid; i++) {
-                    //     // 比较网元ruid
-                        if (request->ruid[i] == eth1) {
-                    
-                            int result = eth1_software_version_callback(&request,&response)
+                        if (request->ruid[i] == NIXYK_DEVID_BASEBAND) { //eth1设备标识符
+                            // 创建ETH1任务
+                            Eth1Task* eth1_task = malloc(sizeof(Eth1Task));
+                            eth1_task->type = ETH1_TASK_SWVER_QUERY;
+                            eth1_task->task_id = strdup(request->requestId);
+                            eth1_task->target.ruid = NIXYK_DEVID_BASEBAND;
+                            eth1_task->policy = CTRL_POLICY_DEFAULT(); 
+                            
+                            // 将任务入队给ETH1线程处理
+                            int result = eth1_enqueue_task(eth1_task);
                             if (result != 0) {
-                            printf("[ERROR] Failed to query software version, error code: %d\n", result);
+                                printf("[ERROR] Failed to enqueue version query task: %d\n", result);
+                                free(eth1_task->requestId);
+                                free(eth1_task);
+                                return NULL;
                             }
-                            printf("[CMD] 已转发软件版本查询请求到ETH1: %s\n", task->ruid);
-                            }
-                            else{
-                                    printf("[CMD] 未知的RUID，无法转发任务: %s\n", task->ruid);
-                                    strncpy(task->status, "failed", sizeof(task->status));
-                                    return NULL;
-                            }                           
-                    }
-                    // for (int i = 0; i < cnt_ruid; i++) {
-                    //     // 比较网元ruid
-                    //     if (request->ruid[i] == eth1) {
-                    //         // 发送ETH1命令并等待响应
-                    //         pthread_mutex_lock(&global_state.eth1_task_mutex);
-                    //         global_state.eth1_current_task = task;
-                    //         global_state.eth1_task_available = 1;
-                    //         pthread_cond_signal(&global_state.eth1_task_cond);
-                    //         pthread_mutex_unlock(&global_state.eth1_task_mutex);
-                    //         printf("[CMD] 已转发软件版本查询请求到ETH1: %s\n", task->ruid);
-                    //     }
-                    //     else{
-                    //             printf("[CMD] 未知的RUID，无法转发任务: %s\n", task->ruid);
-                    //             strncpy(task->status, "failed", sizeof(task->status));
-                    //             return NULL;
-                    //         }                       
-                    //     break;
-                    // }    
+                            
+                            printf("[CMD] 已将软件版本查询任务发送给ETH1: %s\n", request->requestId);
+                            break;
+                        }
+                        if (request->ruid[i] == NIXYK_DEVID_ISL_1_MGMT) { //rs422设备标识符
+                            // 创建RS422任务
+                            Rs422Task* rs422_task = malloc(sizeof(Rs422Task));
+                            rs422_task->type = RS422_TASK_RECEIVE_DATA;
+                            rs422_task->task_id = strdup(request->requestId);
 
+                            
+                            // 将任务入队给RS422线程处理
+                            int result = rs422_enqueue_task(rs422_task);
+                            if (result != 0) {
+                                printf("[ERROR] Failed to enqueue RS422 send task: %d\n", result);
+                                free(rs422_task->task_id);
+                                free(rs422_task);
+                                return NULL;
+                            }
+                            
+                            printf("[CMD] 已将软件版本查询任务发送给RS422: %s\n", request->requestId);
+                            break;
+                        }
                     break;
-                }        
+                    }
+                }    
+                  
                 //软件版本查询响应
                 case MSG_RESPONSE_SOFTWARE_VERSION:
                 {   
                     //成功响应
                     g_version_ctx* response = (g_version_ctx*)msg.data;
                     printf("[CMD] 收到软件版本查询响应: %s\n", response->requestId);
-   
-                    
-                    // // 假设从ETH1响应中获取版本信息
-                    // // 当前版本
-                    // printf("当前版本: %s\n", response->currentVersion);
 
-                    // //上一版本
-                    // printf("当前版本: %s\n", response->lastVersion);
-
-                    // //版本数量
-                    // printf("版本数量: %d\n", response->VersionCount);
-                    
-                    // // 构造JSON响应
-                    // json_t* resp_json = json_object();
-                    // json_object_set_new(resp_json, "requestId", json_string(response->requestId));
-                    // json_object_set_new(resp_json, "currentVersion", json_string(response->currentVersion));
-                    // json_object_set_new(resp_json, "lastVersion", json_string(response->lastVersion));
-                    // json_object_set_new(resp_json, "versionCount", json_integer(response->VersionCount));
-                    
-                    // // 转换为字符串并存储
-                    // char* json_str = json_dumps(resp_json, JSON_COMPACT);
-                    // if (json_str) {
-                    //     printf("[CMD] Version query response: %s\n", json_str);
-                    //     free(json_str);
-                    // }
-                    
-                    // // 释放JSON对象
-                    // json_decref(resp_json);
 
                     // 通知ETH0线程响应已准备好
-                    g_version_ctx.response_ready = true;  // 设置响应就绪
-                    pthread_cond_signal(request->response_cond);  // 通知等待线程
+                    response->response_ready = true;  // 设置响应就绪
+                    pthread_cond_signal(response->original_request->response_cond);  // 通知等待线程
                     printf("[Main] 已设置响应就绪，通知eth0线程\n");
                     break;
                 }
  
-                   
-                    
+                //  接收回退指令
+                case MSG_QUERY_ROLLBACK_TASK: {
+                    eth0_data_Request_ROLLBACK* request = (eth0_data_Request_ROLLBACK*)msg.data;
+                    printf("[CMD] 收到软件回退指令: %s\n", request->requestId);
+                    for (int i = 0; i < cnt_ruid; i++) {
+                        if (request->ruid[i] == NIXYK_DEVID_BASEBAND) { //eth1设备标识符
+                            // 创建ETH1任务
+                            Eth1Task* eth1_task = malloc(sizeof(Eth1Task));
+                            eth1_task->type = ETH1_TASK_ROLLBACK_SET;
+                            eth1_task->task_id = strdup(request->requestId); 
+                            eth1_task->target.ruid = NIXYK_DEVID_BASEBAND;
+                            eth1_task->policy = CTRL_POLICY_DEFAULT();       
 
                             
+                            // 将任务入队给ETH1线程处理
+                            int result = eth1_enqueue_task(eth1_task);
+                            if (result != 0) {
+                                printf("[ERROR] Failed to enqueue ROLLBACK task: %d\n", result);
+                                free(eth1_task->requestId);
+                                free(eth1_task);
+                                return NULL;
+                            }
+                            
+                            printf("[CMD] 已将软件回退指令发送给ETH1: %s\n", request->requestId);
+                            break;
+                        }
+                        if (request->ruid[i] == NIXYK_DEVID_ISL_1_MGMT) { //rs422设备标识符
+                            // 创建RS422任务
+                            Rs422Task* rs422_task = malloc(sizeof(Rs422Task));
+                            rs422_task->type = RS422_TASK_CONFIG_PORT;
+                            rs422_task->task_id = strdup(request->requestId);
+
+                            
+                            // 将任务入队给RS422线程处理
+                            int result = rs422_enqueue_task(rs422_task);
+                            if (result != 0) {
+                                printf("[ERROR] Failed to enqueue RS422 send task: %d\n", result);
+                                free(rs422_task->task_id);
+                                free(rs422_task);
+                                return NULL;
+                            }
+                            
+                            printf("[CMD] 已将软件版本查询任务发送给RS422: %s\n", request->requestId);
+                            break;
+                        }
+                    }
+                }
+
+                
+                //  回退指令反馈
+                case MSG_RESPONSE_ROLLBACK_TASK: {
+                    eth0_Request_ROLLBACK_Context* response = (eth0_Request_ROLLBACK_Context*)msg.data;
+                    printf("[CMD] 收到软件回退指令反馈: %s\n", response->requestId);
+                    response->response_ready = true;  // 设置响应就绪
+                    pthread_cond_signal(response->original_request->response_cond);  // 通知等待线程
+                    printf("[Main] 已设置响应就绪，通知eth0线程\n");
+                    break;
+                }
+
+
+
          
-                // 软件回退状态查询
+                // 软件回退状态查询请求
                 case MSG_QUERY_ROLLBACK_STATUS:
                 {
                     eth0_data_Query_ROLLBACK* request = (eth0_data_Query_ROLLBACK*)msg.data;
+
                     printf("[CMD] 收到软件回退状态查询请求: %s\n", request->requestId);
+                    for (int i = 0; i < cnt_ruid; i++) {
+                        if (request->ruid[i] == NIXYK_DEVID_BASEBAND) { //eth1设备标识符
+                            // 创建ETH1任务
+                            Eth1Task* eth1_task = malloc(sizeof(Eth1Task));
+                            eth1_task->type = ETH1_TASK_ROLLBACK_QUERY;
+                            eth1_task->task_id = strdup(request->requestId);
+                            eth1_task->target.ruid = NIXYK_DEVID_BASEBAND;
+                            eth1_task->policy = CTRL_POLICY_DEFAULT(); 
+                            
+                            // 将任务入队给ETH1线程处理
+                            int result = eth1_enqueue_task(eth1_task);
+                            if (result != 0) {
+                                printf("[ERROR] Failed to enqueue ROLLBACK STATUS task: %d\n", result);
+                                free(eth1_task->requestId);
+                                free(eth1_task);
+                                return NULL;
+                            }
+                            
+                            printf("[CMD] 已将软件回退状态查询请求发送给ETH1: %s\n", request->requestId);
+                            break;
+                        }
+                        if (request->ruid[i] == NIXYK_DEVID_ISL_1_MGMT) { //rs422设备标识符
+                                // 创建RS422任务
+                            Rs422Task* rs422_task = malloc(sizeof(Rs422Task));
+                            rs422_task->type = RS422_TASK_RECEIVE_DATA;
+                            rs422_task->task_id = strdup(request->requestId);
 
+                            
+                            // 将任务入队给RS422线程处理
+                            int result = rs422_enqueue_task(rs422_task);
+                            if (result != 0) {
+                                printf("[ERROR] Failed to enqueue RS422 send task: %d\n", result);
+                                free(rs422_task->task_id);
+                                free(rs422_task);
+                                return NULL;
+                            }
+                            
+                            printf("[CMD] 已将软件版本查询任务发送给RS422: %s\n", request->requestId);
+                            break;
+                        }
+                    }
+                     break;
+                }    
 
-
-                }
-
-
-                // 软件回退状态响应
+                // 软件回退状态查询响应
                 case MSG_RESPONSE_ROLLBACK_STATUS:
                 {
                     //成功响应
-                    QueryVersionResponse_to_manage* response = (QueryVersionResponse_to_manage*)msg.data;
+                    eth0_Query_ROLLBACK_Context* response = (eth0_Query_ROLLBACK_Context*)msg.data;
                     printf("[CMD] 收到软件回退状态响应响应: %s\n", response->requestId);
-
+                     // 假设从ETH1响应中获取版本信息                    
+                    response->response_ready = true;  // 设置响应就绪
+                    pthread_cond_signal(response->original_request->response_cond);  // 通知等待线程
+                    printf("[Main] 已设置响应就绪，通知eth0线程\n");
+                    break;       
 
 
                 }
-              
+                
+               // 接收恢复出厂设置指令
+                case MSG_QUERY_REINITIATE_TASK:{
+                    eth0_data_Request_REINITIATE* request = (eth0_data_Request_REINITIATE*)msg.data;
+                    printf("[CMD] 收到恢复出厂配置指令: %s\n", request->requestId);
+                    for (int i = 0; i < cnt_ruid; i++) {
+                        if (request->ruid[i] == NIXYK_DEVID_BASEBAND) { //eth1设备标识符
+                            // 创建ETH1任务
+                            Eth1Task* eth1_task = malloc(sizeof(Eth1Task));
+                            eth1_task->type = ETH1_TASK_FACTORY_RESET_NOTIFY;
+                            eth1_task->task_id = strdup(request->requestId);
+                            eth1_task->target.ruid = NIXYK_DEVID_BASEBAND;
+                            eth1_task->policy = CTRL_POLICY_DEFAULT(); 
+                            
+                            // 将任务入队给ETH1线程处理
+                            int result = eth1_enqueue_task(eth1_task);
+                            if (result != 0) {
+                                printf("[ERROR] Failed to enqueue REINITIATE task: %d\n", result);
+                                free(eth1_task->requestId);
+                                free(eth1_task);
+                                return NULL;
+                            }
+                            
+                            printf("[CMD] 已将恢复出厂配置指令发送给ETH1: %s\n", request->requestId);
+                            break;
+                        }
+                        if (request->ruid[i] == NIXYK_DEVID_ISL_1_MGMT) { //rs422设备标识符
+                            // 创建RS422任务
+                            Rs422Task* rs422_task = malloc(sizeof(Rs422Task));
+                            rs422_task->type = RS422_TASK_CONFIG_PORT;
+                            rs422_task->task_id = strdup(request->requestId);
 
-                // 恢复出厂配置状态查询
+                            
+                            // 将任务入队给RS422线程处理
+                            int result = rs422_enqueue_task(rs422_task);
+                            if (result != 0) {
+                                printf("[ERROR] Failed to enqueue RS422 send task: %d\n", result);
+                                free(rs422_task->task_id);
+                                free(rs422_task);
+                                return NULL;
+                            }
+                            
+                            printf("[CMD] 已将软件版本查询任务发送给RS422: %s\n", request->requestId);
+                            break;
+                        }
+                    }
+                        break;
+                }   
+                
+                // 恢复出厂配置指令反馈
+                case MSG_RESPONSE_REINITIATE_TASK:{
+                    eth0_Request_REINITIATE_Context* response = (eth0_Request_REINITIATE_Context*)msg.data;
+                    printf("[CMD] 收到恢复出厂配置指令反馈: %s\n", response->requestId);
+                    response->response_ready = true;  // 设置响应就绪
+                    pthread_cond_signal(response->original_request->response_cond);  // 通知等待线程
+                    printf("[Main] 已设置响应就绪，通知eth0线程\n");
+                    break;     
+                }
+
+
+                // 恢复出厂配置状态查询请求
                 case MSG_QUERY_REINITIATE_STATUS:{
                     eth0_data_Query_REINITIATE* request = (eth0_data_Query_REINITIATE*)msg.data;
                     printf("[CMD] 收到恢复出厂配置状态查询请求: %s\n", request->requestId);
+                    for (int i = 0; i < cnt_ruid; i++) {
+                        if (request->ruid[i] == NIXYK_DEVID_BASEBAND) { //eth1设备标识符
+                            // 创建ETH1任务
+                            Eth1Task* eth1_task = malloc(sizeof(Eth1Task));
+                            eth1_task->type = ETH1_TASK_FACTORY_RESET_QUERY;
+                            eth1_task->task_id = strdup(request->requestId);
+                            eth1_task->target.ruid = NIXYK_DEVID_BASEBAND;
+                            eth1_task->policy = CTRL_POLICY_DEFAULT(); 
+                            
+                            // 将任务入队给ETH1线程处理
+                            int result = eth1_enqueue_task(eth1_task);
+                            if (result != 0) {
+                                printf("[ERROR] Failed to enqueue REINITIATE STATUS task: %d\n", result);
+                                free(eth1_task->requestId);
+                                free(eth1_task);
+                                return NULL;
+                            }
+                            
+                            printf("[CMD] 已将恢复出厂配置状态查询请求发送给ETH1: %s\n", request->requestId);
+                            break;
+                        }
+                        if (request->ruid[i] == NIXYK_DEVID_ISL_1_MGMT) { //rs422设备标识符
+                            // 创建RS422任务
+                            Rs422Task* rs422_task = malloc(sizeof(Rs422Task));
+                            rs422_task->type = RS422_TASK_RECEIVE_DATA;
+                            rs422_task->task_id = strdup(request->requestId);
 
-                }
+                            
+                            // 将任务入队给RS422线程处理
+                            int result = rs422_enqueue_task(rs422_task);
+                            if (result != 0) {
+                                printf("[ERROR] Failed to enqueue RS422 send task: %d\n", result);
+                                free(rs422_task->task_id);
+                                free(rs422_task);
+                                return NULL;
+                            }
+                            
+                            printf("[CMD] 已将软件版本查询任务发送给RS422: %s\n", request->requestId);
+                            break;
+                        }
+
+                    }
+                     break;
+                }   
 
 
-                // 恢复出厂配置状态响应
+                // 恢复出厂配置状态查询响应
     
                 case MSG_RESPONSE_REINITIATE_STATUS:{
-                    QueryReinitiateResponse_to_manage* response = (QueryReinitiateResponse_to_manage*)msg.data;
+                    eth0_Query_REINITIATE_Context* response = (eth0_Query_REINITIATE_Context*)msg.data;
                     printf("[CMD] 收到恢复出厂配置状态响应: %s\n", request->requestId);
-
+                    response->response_ready = true;  // 设置响应就绪
+                    pthread_cond_signal(response->original_request->response_cond);  // 通知等待线程
+                    printf("[Main] 已设置响应就绪，通知eth0线程\n");
+                    break;     
 
 
                 }
@@ -492,63 +748,3 @@ void register_timed_task(GlobalState *state, void (*task_func)(void *),
 }
 
 
-// ================== 辅助函数 ==================
-static int save_system_state(void)
-{
-    // 保存系统状态的实现
-    return 0;
-}
-
-static void stop_all_active_tasks(void)
-{
-    // 停止所有活动任务的实现
-    pthread_mutex_lock(&global_state.eth1_task_mutex);
-    global_state.eth1_task_available = 0;
-    pthread_mutex_unlock(&global_state.eth1_task_mutex);
-    
-    // 停止其他任务...
-}
-
-static int reset_all_devices(void)
-{
-    // 重置所有设备连接的实现
-    return 0;
-}
-
-static int reinitialize_system_config(void)
-{
-    // 重新初始化系统配置的实现
-    return 0;
-}
-
-static int check_rollback_version(void)
-{
-    // 检查是否存在可回滚版本的实现
-    return 1;
-}
-
-static void stop_current_services(void)
-{
-    // 停止当前运行服务的实现
-}
-
-static void backup_current_config(void)
-{
-    // 备份当前配置的实现
-}
-
-static int perform_system_rollback(void)
-{
-    // 执行系统回滚的实现
-    return 0;
-}
-
-static void restart_system_services(void)
-{
-    // 重启系统服务的实现
-}
-
-static void restore_backup_config(void)
-{
-    // 恢复备份配置的实现
-}
