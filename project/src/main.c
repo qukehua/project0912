@@ -39,33 +39,78 @@ static void on_eth1_msg(void* user, const Eth1Msg* msg) {
 }
 
 
-static void on_rs422_msg(void* user, const Rs422Msg* msg) {
-  switch (msg->type) {
-    case Rs422AckMsg:
-      // 这里把 msg->u.ack.payload.buf/len 转给 REST/上层
-      break;
-    case Rs422ProgressMsg:
-      // 进度上报（FTP=stage1，分片直传=stage2）
-      break;
-    case Rs422DoneMsg:
-      // status==0 表示成功；last_resp 带最后一次应答的原始参数字节
-      break;
-    default: break;
-  }
+static void rs422_message_handler(void *user, const Rs422Msg *msg)
+{
+    (void)user; /* 未使用的参数 */
+
+    switch (msg->type)
+    {
+    case RS422_MSG_RECEIVED:
+    {
+        printf("[RS422] Received data (task_id=%u, len=%u):\n",
+               msg->u.data.task_id, msg->u.data.data_len);
+
+        /* 打印接收到的数据（十六进制格式） */
+        printf("[RS422] Data: ");
+        for (uint16_t i = 0; i < msg->u.data.data_len; i++)
+        {
+            printf("0x%02X ", msg->u.data.data[i]);
+        }
+        printf("\n");
+
+        /* 这里可以根据接收到的数据进行相应的处理 */
+        /* 例如，可以发送响应数据 */
+        uint8_t response[] = "Hello from RS422 test program!";
+        rs422_send_data(response, sizeof(response), 1000);
+        break;
+    }
+
+    case RS422_MSG_DONE:
+    {
+        printf("[RS422] Data sent (task_id=%u)\n", msg->u.data.task_id);
+        break;
+    }
+
+    case RS422_MSG_ERROR:
+    {
+        printf("[RS422] Error (task_id=%u, code=%d): %s\n",
+               msg->u.error.task_id, msg->u.error.error_code, msg->u.error.error_msg);
+        break;
+    }
+
+    case RS422_MSG_STATUS:
+    {
+        printf("[RS422] Status (task_id=%u, code=%d): %s\n",
+               msg->u.status.task_id, msg->u.status.status_code, msg->u.status.status_msg);
+        break;
+    }
+
+    default:
+    {
+        printf("[RS422] Unknown message type\n");
+        break;
+    }
+    }
 }
 
 
 
 int app_start(void) {
+    pthread_t eth1_udp_tid, eth1_ftp_tid;
+    printf("Initializing ETH1 module...\n");
     if (eth1_init(on_eth1_msg, NULL) != 0) {
         printf("ETH1 init failed\n");
         return -1;
     }
+    printf("ETH1 module initialized successfully.\n");
 
-    if (rs422_init(on_rs422_msg, NULL) != 0) {
+    pthread_t rs422_tid_0, rs422_tid_1, rs422_tid_2, rs422_tid_3, rs422_tid_4;
+    printf("Initializing RS422 module...\n");
+    if (rs422_init(rs422_message_handler, NULL) != 0) {
         printf("RS422 init failed\n");
         return -1;
     }
+    printf("RS422 module initialized successfully.\n");
     
     // 启动eth0接口线程
     pthread_t eth0_tid;
@@ -98,18 +143,17 @@ int app_start(void) {
 
 
     //  ================== 创建ETH1服务线程 ==================
-    pthread_t eth1_udp_tid, eth1_ftp_tid;
+
     // 创建ETH1 UDP线程
-    pthread_create(&eth1_udp_tid, NULL, eth1_thread, NULL) ;
+
     // 创建ETH1 FTP线程
-    pthread_create(&eth1_ftp_tid, NULL, eth1_thread, NULL) ;
+
 
 
 
     //  ================== 创建RS422服务线程 ==================
-    pthread_t rs422_tid_0, rs422_tid_1, rs422_tid_2, rs422_tid_3, rs422_tid_4;
+
     // 创建RS422_DEV_0线程
-    pthread_create(&rs422_tid_0, NULL, rs422_thread, NULL) ;
     // // 创建RS422_DEV_1线程
     // pthread_create(&rs422_tid_1, NULL, rs422_thread, NULL) ;
     // // 创建RS422_DEV_2线程
@@ -311,8 +355,7 @@ void *command_worker_thread(void *arg)
                         if (request->ruid[i] == NIXYK_DEVID_ISL_1_MGMT) { //rs422设备标识符
                             // 创建RS422任务
                             Rs422Task* rs422_task = malloc(sizeof(Rs422Task));
-                            rs422_task->type = RS422_TASK_RECEIVE_DATA;
-                            rs422_task->task_id = strdup(request->requestId);
+
 
                             
                             // 将任务入队给RS422线程处理
