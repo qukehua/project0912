@@ -96,7 +96,7 @@ static void rs422_message_handler(void *user, const Rs422Msg *msg)
 
 
 int app_start(void) {
-    pthread_t eth1_udp_tid, eth1_ftp_tid;
+     //  ================== 创建ETH1服务线程 ==================
     printf("Initializing ETH1 module...\n");
     if (eth1_init(on_eth1_msg, NULL) != 0) {
         printf("ETH1 init failed\n");
@@ -104,7 +104,7 @@ int app_start(void) {
     }
     printf("ETH1 module initialized successfully.\n");
 
-    pthread_t rs422_tid_0, rs422_tid_1, rs422_tid_2, rs422_tid_3, rs422_tid_4;
+    //  ================== 创建RS422服务线程 ==================
     printf("Initializing RS422 module...\n");
     if (rs422_init(rs422_message_handler, NULL) != 0) {
         printf("RS422 init failed\n");
@@ -141,29 +141,6 @@ int app_start(void) {
     pthread_create(&command_worker_tid, NULL, command_worker_thread, NULL);
     printf("[DEBUG] 模拟处理线程已创建\n");
 
-
-    //  ================== 创建ETH1服务线程 ==================
-
-    // 创建ETH1 UDP线程
-
-    // 创建ETH1 FTP线程
-
-
-
-
-    //  ================== 创建RS422服务线程 ==================
-
-    // 创建RS422_DEV_0线程
-    // // 创建RS422_DEV_1线程
-    // pthread_create(&rs422_tid_1, NULL, rs422_thread, NULL) ;
-    // // 创建RS422_DEV_2线程
-    // pthread_create(&rs422_tid_2, NULL, rs422_thread, NULL) ;
-    // // 创建RS422_DEV_3线程
-    // pthread_create(&rs422_tid_3, NULL, rs422_thread, NULL) ;
-    // // 创建RS422_DEV_4线程
-    // pthread_create(&rs422_tid_4, NULL, rs422_thread, NULL) ;
-
-
     
     //  ================== 创建CAN服务线程 ==================
     // 注意：can_service_thread函数当前没有实现，已注释掉
@@ -179,6 +156,7 @@ int app_start(void) {
 
 void app_stop(void){
     //关闭线程
+    
     pthread_join(eth0_tid, NULL);
     pthread_join(ftp_dl_tid, NULL);
     pthread_join(timer_tid, NULL);
@@ -186,15 +164,11 @@ void app_stop(void){
     // 注意：can_service_thread函数当前没有实现，已注释掉
     // pthread_join(can0_tid, NULL);
     // pthread_join(can1_tid, NULL);
+
+    //关闭eth1线程
     eth1_shutdown();
-    pthread_join(eth1_udp_tid, NULL);
-    pthread_join(eth1_ftp_tid, NULL);
+    //关闭rs422线程
     rs422_shutdown();
-    pthread_join(rs422_tid_0, NULL);
-    // pthread_join(rs422_tid_1, NULL);
-    // pthread_join(rs422_tid_2, NULL);
-    // pthread_join(rs422_tid_3, NULL);
-    // pthread_join(rs422_tid_4, NULL);
 
 
     // 清理资源 - 已在eth0.c中实现
@@ -220,12 +194,6 @@ int main()
     pthread_cond_init(&global_state.can0_task_cond, NULL);
     pthread_mutex_init(&global_state.can1_task_mutex, NULL);
     pthread_cond_init(&global_state.can1_task_cond, NULL);
-    pthread_mutex_init(&global_state.eth1_task_mutex, NULL);
-    pthread_cond_init(&global_state.eth1_task_cond, NULL);
-    for(int i = 0; i < 5; i++) {
-    pthread_mutex_init(&global_state.rs422_task_mutex[i], NULL);
-    pthread_cond_init(&global_state.rs422_task_cond[i], NULL);
-    }
 
     app_start();
     printf("System initialized successfully\n");
@@ -355,7 +323,8 @@ void *command_worker_thread(void *arg)
                         if (request->ruid[i] == NIXYK_DEVID_ISL_1_MGMT) { //rs422设备标识符
                             // 创建RS422任务
                             Rs422Task* rs422_task = malloc(sizeof(Rs422Task));
-
+                            rs422_task->type = RS422_TASK_SEND_DATA;
+                            rs422_task->task_id = strdup(request->requestId);
 
                             
                             // 将任务入队给RS422线程处理
@@ -418,7 +387,7 @@ void *command_worker_thread(void *arg)
                         if (request->ruid[i] == NIXYK_DEVID_ISL_1_MGMT) { //rs422设备标识符
                             // 创建RS422任务
                             Rs422Task* rs422_task = malloc(sizeof(Rs422Task));
-                            rs422_task->type = RS422_TASK_CONFIG_PORT;
+                            rs422_task->type = RS422_TASK_SEND_DATA;
                             rs422_task->task_id = strdup(request->requestId);
 
                             
@@ -481,7 +450,7 @@ void *command_worker_thread(void *arg)
                         if (request->ruid[i] == NIXYK_DEVID_ISL_1_MGMT) { //rs422设备标识符
                                 // 创建RS422任务
                             Rs422Task* rs422_task = malloc(sizeof(Rs422Task));
-                            rs422_task->type = RS422_TASK_RECEIVE_DATA;
+                            rs422_task->type = RS422_TASK_SEND_DATA;
                             rs422_task->task_id = strdup(request->requestId);
 
                             
@@ -544,7 +513,7 @@ void *command_worker_thread(void *arg)
                         if (request->ruid[i] == NIXYK_DEVID_ISL_1_MGMT) { //rs422设备标识符
                             // 创建RS422任务
                             Rs422Task* rs422_task = malloc(sizeof(Rs422Task));
-                            rs422_task->type = RS422_TASK_CONFIG_PORT;
+                            rs422_task->type = RS422_TASK_SEND_DATA;
                             rs422_task->task_id = strdup(request->requestId);
 
                             
@@ -603,7 +572,7 @@ void *command_worker_thread(void *arg)
                         if (request->ruid[i] == NIXYK_DEVID_ISL_1_MGMT) { //rs422设备标识符
                             // 创建RS422任务
                             Rs422Task* rs422_task = malloc(sizeof(Rs422Task));
-                            rs422_task->type = RS422_TASK_RECEIVE_DATA;
+                            rs422_task->type = RS422_TASK_SEND_DATA;
                             rs422_task->task_id = strdup(request->requestId);
 
                             
